@@ -4,7 +4,6 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import { Fish, Waves } from "lucide-react";
 import Button from "@/components/ui/Button";
-import { whatsappReservaLink } from "@/lib/whatsapp";
 
 export default function Hero() {
   return (
@@ -72,8 +71,8 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-10 flex flex-col gap-4 sm:flex-row"
         >
-          <Button href={whatsappReservaLink} variant="primary">
-            Reservar pelo WhatsApp
+          <Button href="#reserva" variant="primary">
+            Reservar online
           </Button>
           <Button href="#cardapio" variant="outline">
             Ver cardápio

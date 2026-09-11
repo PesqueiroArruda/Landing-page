@@ -4,7 +4,6 @@ import { useState } from "react";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import Button from "@/components/ui/Button";
-import { whatsappReservaLink } from "@/lib/whatsapp";
 
 const NAV_LINKS = [
   { href: "#sobre", label: "Sobre" },
@@ -12,6 +11,7 @@ const NAV_LINKS = [
   { href: "#pesca", label: "Pesca" },
   { href: "#estrutura", label: "Estrutura" },
   { href: "#eventos", label: "Eventos" },
+  { href: "#reserva", label: "Reservar" },
   { href: "#contato", label: "Contato" },
 ];
 
@@ -51,7 +51,7 @@ export default function Navbar() {
         </div>
 
         <div className="hidden md:block">
-          <Button href={whatsappReservaLink} variant="primary" className="px-5 py-2 text-sm">
+          <Button href="#reserva" variant="primary" className="px-5 py-2 text-sm">
             Reservar
           </Button>
         </div>
@@ -79,11 +79,7 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-            <Button
-              href={whatsappReservaLink}
-              variant="primary"
-              className="mt-2 w-full"
-            >
+            <Button href="#reserva" variant="primary" className="mt-2 w-full">
               Reservar
             </Button>
           </div>
