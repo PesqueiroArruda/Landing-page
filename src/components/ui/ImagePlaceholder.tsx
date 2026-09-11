@@ -18,11 +18,26 @@ export default function ImagePlaceholder({
   return (
     <div
       data-image-placeholder={imagePath}
-      className={`flex flex-col items-center justify-center gap-3 bg-linear-to-br from-navy via-cyan to-navy-hover ${className}`}
+      className={`relative flex flex-col items-center justify-center gap-3 overflow-hidden bg-ink ${className}`}
     >
-      <Icon className="h-14 w-14 text-text-on-navy/70" strokeWidth={1.5} />
+      <svg
+        aria-hidden
+        className="absolute inset-0 h-full w-full text-paper/5"
+        preserveAspectRatio="none"
+      >
+        <pattern id="ripple" width="42" height="42" patternUnits="userSpaceOnUse">
+          <path
+            d="M0 21c5-6 9-6 10.5 0s5.5 6 10.5 0 9-6 10.5 0 5.5 6 10.5 0"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          />
+        </pattern>
+        <rect width="100%" height="100%" fill="url(#ripple)" />
+      </svg>
+      <Icon className="relative h-10 w-10 text-gold/70" strokeWidth={1.5} />
       {label && (
-        <span className="px-4 text-center text-sm font-medium text-text-on-navy/70">
+        <span className="relative px-4 text-center text-sm font-medium text-paper/70">
           {label}
         </span>
       )}

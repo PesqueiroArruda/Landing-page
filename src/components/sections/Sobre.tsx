@@ -1,15 +1,14 @@
 import { Fish, HeartHandshake, Sun, UtensilsCrossed } from "lucide-react";
-import FadeIn from "@/components/ui/FadeIn";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 
 const DIFERENCIAIS = [
   {
     icon: Fish,
-    text: "Peixe fresco, pescado e preparado na hora",
+    text: "Prato preparado na hora, com a receita da casa",
   },
   {
     icon: HeartHandshake,
-    text: "Tradição e história de família — a nossa família própria trabalha no salão",
+    text: "A nossa família própria trabalha no salão, com a mesma tradição de sempre",
   },
   {
     icon: Sun,
@@ -23,48 +22,44 @@ const DIFERENCIAIS = [
 
 export default function Sobre() {
   return (
-    <section id="sobre" className="bg-white px-4 py-20 sm:px-6">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
-        <FadeIn>
-          <span className="mb-3 block text-sm font-semibold tracking-widest text-cyan uppercase">
-            Sobre nós
-          </span>
-          <h2 className="font-heading text-3xl font-bold text-navy sm:text-4xl">
-            Nossa família servindo a sua!
+    <section id="sobre" className="bg-paper-soft px-4 py-20 sm:px-6 sm:py-28">
+      <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-20">
+        <div>
+          <h2 className="text-3xl leading-[1.1] font-semibold text-ink sm:text-4xl">
+            Nossa família servindo a sua
           </h2>
-          <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg">
+          <span aria-hidden className="mt-4 block h-0.75 w-14 rounded-full bg-gold" />
+
+          <p className="mt-6 max-w-md text-base leading-relaxed text-bark/75 sm:text-lg">
             Em Santana de Parnaíba, o Pesqueiro Arruda&apos;s é o destino
             ideal pra passar o dia com quem você ama — seja pescando na nossa
-            Pesca Esportiva, seja só sentando pra comer bem à beira do lago.
+            pesca esportiva, seja só sentando pra comer bem à beira do lago.
           </p>
-          <p className="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-            É a nossa família cuidando de cada detalhe, com a mesma tradição
-            de sempre, pra fazer da sua visita um momento de verdade em
-            família.
+          <p className="mt-4 max-w-md text-base leading-relaxed text-bark/75 sm:text-lg">
+            É a nossa família cuidando de cada detalhe, pra fazer da sua
+            visita um momento de verdade em família.
           </p>
 
-          <ul className="mt-8 flex flex-col gap-4">
+          <ul className="mt-9 flex flex-col gap-4">
             {DIFERENCIAIS.map(({ icon: Icon, text }) => (
               <li key={text} className="flex items-start gap-3">
-                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-navy/5 text-navy">
+                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-lake/12 text-lake">
                   <Icon className="h-4 w-4" />
                 </span>
-                <span className="text-sm text-slate-700 sm:text-base">
+                <span className="text-sm text-bark/80 sm:text-base">
                   {text}
                 </span>
               </li>
             ))}
           </ul>
-        </FadeIn>
+        </div>
 
-        <FadeIn delay={0.15}>
-          <ImagePlaceholder
-            icon={Fish}
-            label="Nossa família à beira do lago"
-            imagePath="/images/sobre-familia.jpg"
-            className="aspect-4/3 w-full rounded-3xl"
-          />
-        </FadeIn>
+        <ImagePlaceholder
+          icon={Fish}
+          label="Nossa família à beira do lago"
+          imagePath="/images/sobre-familia.jpg"
+          className="aspect-4/3 w-full rounded-2xl"
+        />
       </div>
     </section>
   );

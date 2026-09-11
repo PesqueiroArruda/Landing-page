@@ -1,6 +1,4 @@
 import { Building2, CakeSlice } from "lucide-react";
-import FadeIn from "@/components/ui/FadeIn";
-import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
 import { whatsappEventosLink } from "@/lib/whatsapp";
 
@@ -21,44 +19,34 @@ const OCASIOES = [
 
 export default function Eventos() {
   return (
-    <section
-      id="eventos"
-      className="bg-linear-to-br from-navy to-navy-hover px-4 py-20 text-text-on-navy sm:px-6"
-    >
-      <div className="mx-auto max-w-4xl text-center">
-        <FadeIn>
-          <SectionHeading
-            eyebrow="Ocasiões especiais"
-            title="Seu evento merece um lugar assim"
-            light
-          />
-        </FadeIn>
-
-        <div className="grid gap-6 sm:grid-cols-2">
-          {OCASIOES.map(({ icon: Icon, titulo, descricao }, index) => (
-            <FadeIn key={titulo} delay={index * 0.15}>
-              <div className="flex h-full flex-col items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-8 text-center">
-                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-gold/15 text-gold">
-                  <Icon className="h-6 w-6" />
-                </span>
-                <h3 className="font-heading text-lg font-bold">{titulo}</h3>
-                <p className="text-sm text-text-on-navy/80">{descricao}</p>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
-
-        <FadeIn delay={0.3}>
-          <p className="mx-auto mt-10 max-w-xl text-text-on-navy/80">
-            Entre em contato pra reservas e saiba mais sobre como organizar
-            seu evento com a gente.
-          </p>
-          <div className="mt-6">
-            <Button href={whatsappEventosLink} variant="primary">
-              Falar sobre meu evento
-            </Button>
+    <section id="eventos" className="bg-lake px-4 py-20 text-paper sm:px-6 sm:py-28">
+      <div className="mx-auto max-w-5xl">
+        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <div>
+            <h2 className="text-3xl leading-[1.1] font-semibold sm:text-4xl">
+              Seu evento merece um lugar assim.
+            </h2>
+            <span aria-hidden className="mt-4 block h-0.75 w-14 rounded-full bg-gold" />
+            <p className="mt-6 max-w-sm text-base leading-relaxed text-paper/75 sm:text-lg">
+              Fale com a gente e organize sua comemoração à beira do lago.
+            </p>
+            <div className="mt-8">
+              <Button href={whatsappEventosLink} variant="primary">
+                Falar sobre meu evento
+              </Button>
+            </div>
           </div>
-        </FadeIn>
+
+          <div className="grid gap-8 sm:grid-cols-2 sm:divide-x sm:divide-paper/15">
+            {OCASIOES.map(({ icon: Icon, titulo, descricao }, index) => (
+              <div key={titulo} className={index === 1 ? "sm:pl-8" : ""}>
+                <Icon className="h-7 w-7 text-gold" strokeWidth={1.75} />
+                <h3 className="mt-4 text-lg font-semibold">{titulo}</h3>
+                <p className="mt-2 text-sm text-paper/70">{descricao}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

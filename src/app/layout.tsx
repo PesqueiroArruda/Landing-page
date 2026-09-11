@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
-import { Bitter, Manrope } from "next/font/google";
+import { Fraunces, Nunito, Permanent_Marker } from "next/font/google";
 import "./globals.css";
 
-const bitter = Bitter({
-  variable: "--font-bitter",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  axes: ["opsz", "SOFT", "WONK"],
 });
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const nunito = Nunito({
+  variable: "--font-nunito",
   subsets: ["latin"],
+});
+
+const permanentMarker = Permanent_Marker({
+  variable: "--font-marker",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 const siteUrl = process.env.VERCEL_URL
@@ -21,7 +27,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Pesqueiro Arruda's | Pesca Esportiva e Restaurante em Santana de Parnaíba",
   description:
-    "Mais que um pesqueiro, lugar de memórias. Pesca esportiva e restaurante à beira do lago no Pesqueiro Arruda's, em Santana de Parnaíba, SP. Peixe fresco, espaço kids e deck com vista pro lago.",
+    "Mais que um pesqueiro, lugar de memórias. Pesca esportiva e restaurante à beira do lago no Pesqueiro Arruda's, em Santana de Parnaíba, SP. Tilápia na chapa, espaço kids e deck com vista pro lago.",
   keywords: [
     "pesqueiro Santana de Parnaíba",
     "pesca esportiva",
@@ -40,7 +46,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-BR" className={`${bitter.variable} ${manrope.variable}`}>
+    <html
+      lang="pt-BR"
+      className={`${fraunces.variable} ${nunito.variable} ${permanentMarker.variable}`}
+    >
       <body className="min-h-screen antialiased">{children}</body>
     </html>
   );

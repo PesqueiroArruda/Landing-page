@@ -1,12 +1,11 @@
 import { Baby, Music, ParkingCircle, Umbrella, Waves } from "lucide-react";
-import FadeIn from "@/components/ui/FadeIn";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 const COMODIDADES = [
   {
     icon: ParkingCircle,
     titulo: "Estacionamento",
-    descricao: "Estacionamento no local, sem complicação.",
+    descricao: "No local, sem complicação.",
   },
   {
     icon: Baby,
@@ -25,36 +24,32 @@ const COMODIDADES = [
   },
   {
     icon: Waves,
-    titulo: "Deck com vista pro lago",
+    titulo: "Deck sobre o lago",
     descricao: "O lugar perfeito pra ver o dia passar.",
   },
 ];
 
 export default function Estrutura() {
   return (
-    <section id="estrutura" className="bg-[#f6f7f9] px-4 py-20 sm:px-6">
+    <section id="estrutura" className="bg-paper px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-6xl">
-        <FadeIn>
-          <SectionHeading
-            eyebrow="Estrutura"
-            title="Pensado pra família toda"
-            description="Tudo o que você precisa pra passar o dia com quem você ama, sem se preocupar com nada."
-          />
-        </FadeIn>
+        <SectionHeading
+          title="Pensado pra família toda"
+          description="Tudo o que você precisa pra passar o dia com quem você ama, sem se preocupar com nada."
+        />
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-          {COMODIDADES.map(({ icon: Icon, titulo, descricao }, index) => (
-            <FadeIn key={titulo} delay={index * 0.08}>
-              <div className="flex h-full flex-col items-center gap-3 rounded-2xl border border-slate-200 bg-white p-6 text-center">
-                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-navy/5 text-navy">
-                  <Icon className="h-6 w-6" />
-                </span>
-                <h3 className="font-heading text-base font-bold text-navy">
-                  {titulo}
-                </h3>
-                <p className="text-sm text-slate-600">{descricao}</p>
-              </div>
-            </FadeIn>
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-5">
+          {COMODIDADES.map(({ icon: Icon, titulo, descricao }) => (
+            <div
+              key={titulo}
+              className="border-t-2 border-gold pt-4"
+            >
+              <Icon className="h-6 w-6 text-lake" strokeWidth={1.75} />
+              <h3 className="mt-3 text-base font-semibold text-ink">
+                {titulo}
+              </h3>
+              <p className="mt-1 text-sm text-bark/65">{descricao}</p>
+            </div>
           ))}
         </div>
       </div>

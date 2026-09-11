@@ -1,25 +1,40 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-navy: #102843;
-  --color-navy-hover: #163457;
-  --color-text-on-navy: #f3f1ea;
-  --color-gold: #c99a2e;
-  --color-gold-strong: #b3841f;
-  --color-cyan: #1d8db0;
+  --color-ink: #14235c;
+  --color-ink-deep: #0d1938;
+  --color-lake: #1f3b33;
+  --color-lake-deep: #142925;
+  --color-gold: #e8a722;
+  --color-gold-deep: #c1860f;
+  --color-paper: #f6efdc;
+  --color-paper-soft: #fbf7ec;
+  --color-bark: #16130e;
 
-  --font-heading: var(--font-bitter);
-  --font-body: var(--font-manrope);
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-nunito);
+  --font-script: var(--font-marker);
+
+  --animate-wave-drift: wave-drift 16s linear infinite;
+}
+
+@keyframes wave-drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 96px;
+  scroll-padding-top: 88px;
 }
 
 body {
-  background: #f6f7f9;
-  color: #17243a;
+  background: var(--color-paper);
+  color: var(--color-bark);
   font-family: var(--font-body);
 }
 
@@ -29,5 +44,16 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

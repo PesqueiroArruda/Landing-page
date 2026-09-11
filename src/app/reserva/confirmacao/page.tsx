@@ -15,28 +15,28 @@ function StatusCard({
   tone: "success" | "pending" | "failed" | "notfound";
 }) {
   const toneClasses: Record<typeof tone, string> = {
-    success: "text-cyan",
+    success: "text-lake",
     pending: "text-gold",
     failed: "text-red-600",
-    notfound: "text-slate-400",
+    notfound: "text-bark/35",
   };
 
   return (
-    <section className="flex min-h-[70vh] items-center justify-center bg-slate-50 px-4 py-24 sm:px-6">
-      <div className="mx-auto flex max-w-md flex-col items-center gap-4 rounded-2xl border border-slate-200 bg-white p-8 text-center">
+    <section className="flex min-h-[70vh] items-center justify-center bg-paper px-4 py-24 sm:px-6">
+      <div className="mx-auto flex max-w-md flex-col items-center gap-4 rounded-2xl border border-ink/10 bg-paper-soft p-8 text-center">
         <span className={toneClasses[tone]}>{icon}</span>
-        <h1 className="font-heading text-2xl font-bold text-navy">{title}</h1>
-        <p className="text-sm text-slate-600 sm:text-base">{description}</p>
+        <h1 className="text-2xl font-semibold text-ink">{title}</h1>
+        <p className="text-sm text-bark/70 sm:text-base">{description}</p>
         <div className="mt-4 flex flex-col gap-2 sm:flex-row">
           <Link
             href="/"
-            className="rounded-full border-2 border-navy/20 px-5 py-2.5 text-sm font-semibold text-navy hover:bg-navy/5"
+            className="rounded-full border-2 border-ink/20 px-5 py-2.5 text-sm font-semibold text-ink hover:bg-ink/5"
           >
             Voltar ao site
           </Link>
           <a
             href={whatsappReservaLink}
-            className="rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-navy hover:bg-gold-strong"
+            className="rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-ink-deep hover:bg-gold-deep"
           >
             Falar pelo WhatsApp
           </a>

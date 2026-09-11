@@ -1,7 +1,6 @@
 "use client";
 
 import { useActionState, useEffect } from "react";
-import FadeIn from "@/components/ui/FadeIn";
 import SectionHeading from "@/components/ui/SectionHeading";
 import SubmitButton from "@/components/ui/SubmitButton";
 import {
@@ -17,9 +16,9 @@ import {
 const initialState: CreateReservationState = { status: "idle" };
 
 const inputClassName =
-  "w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-navy placeholder:text-slate-400 focus:border-cyan focus:outline-none focus:ring-2 focus:ring-cyan/30 sm:text-base";
+  "w-full rounded-xl border border-ink/15 bg-white px-4 py-2.5 text-sm text-ink placeholder:text-bark/35 focus:border-lake focus:outline-none focus:ring-2 focus:ring-lake/25 sm:text-base";
 
-const labelClassName = "mb-1.5 block text-sm font-semibold text-navy";
+const labelClassName = "mb-1.5 block text-sm font-semibold text-ink";
 
 export default function Reserva() {
   const [state, formAction] = useActionState(createReservation, initialState);
@@ -33,21 +32,17 @@ export default function Reserva() {
   const fieldError = (field: string) => state.errors?.[field]?.[0];
 
   return (
-    <section id="reserva" className="bg-slate-50 px-4 py-20 sm:px-6">
+    <section id="reserva" className="bg-paper px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-2xl">
-        <FadeIn>
-          <SectionHeading
-            eyebrow="Reserve seu lugar"
-            title="Faça sua reserva online"
-            description={`Reservas exigem um sinal de R$ ${DEPOSIT_AMOUNT_BRL.toFixed(2).replace(".", ",")}, pago aqui mesmo pelo site via Pix ou cartão. O restante é pago no dia, no local.`}
-          />
-        </FadeIn>
+        <SectionHeading
+          title="Faça sua reserva online"
+          description={`Reservas exigem um sinal de R$ ${DEPOSIT_AMOUNT_BRL.toFixed(2).replace(".", ",")}, pago aqui mesmo pelo site via Pix ou cartão. O restante é pago no dia, no local.`}
+        />
 
-        <FadeIn delay={0.1}>
-          <form
-            action={formAction}
-            className="grid gap-4 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8"
-          >
+        <form
+          action={formAction}
+          className="grid gap-4 rounded-2xl border border-ink/10 bg-paper-soft p-6 sm:p-8"
+        >
             <div>
               <label htmlFor="customerName" className={labelClassName}>
                 Nome completo
@@ -161,7 +156,7 @@ export default function Reserva() {
                   {ENVIRONMENT_OPTIONS.map((option, index) => (
                     <label
                       key={option.value}
-                      className="flex items-center gap-2 text-sm text-navy"
+                      className="flex items-center gap-2 text-sm text-ink"
                     >
                       <input
                         type="radio"
@@ -169,7 +164,7 @@ export default function Reserva() {
                         value={option.value}
                         defaultChecked={index === 0}
                         required
-                        className="h-4 w-4 accent-cyan"
+                        className="h-4 w-4 accent-lake"
                       />
                       {option.label.replace("Ambiente ", "")}
                     </label>
@@ -206,13 +201,12 @@ export default function Reserva() {
               Ir para pagamento do sinal
             </SubmitButton>
 
-            <p className="text-center text-xs text-slate-500">
+            <p className="text-center text-xs text-bark/55">
               Ao confirmar, você será redirecionado ao checkout seguro da
               InfinitePay para pagar o sinal de R${" "}
               {DEPOSIT_AMOUNT_BRL.toFixed(2).replace(".", ",")}.
             </p>
           </form>
-        </FadeIn>
       </div>
     </section>
   );

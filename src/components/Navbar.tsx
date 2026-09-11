@@ -11,7 +11,6 @@ const NAV_LINKS = [
   { href: "#pesca", label: "Pesca" },
   { href: "#estrutura", label: "Estrutura" },
   { href: "#eventos", label: "Eventos" },
-  { href: "#reserva", label: "Reservar" },
   { href: "#contato", label: "Contato" },
 ];
 
@@ -19,31 +18,30 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 right-0 left-0 z-50 border-b border-white/10 bg-navy/95 backdrop-blur">
+    <header className="fixed top-0 right-0 left-0 z-50 border-b border-gold/20 bg-ink">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-        <a
-          href="#top"
-          className="flex items-center gap-2 font-heading text-lg font-bold text-text-on-navy"
-        >
-          <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full ring-1 ring-white/15">
+        <a href="#top" className="flex items-center gap-2.5">
+          <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-gold/70">
             <Image
               src="/logo.jpeg"
               alt="Logo Pesqueiro Arruda's"
               fill
-              sizes="40px"
+              sizes="36px"
               className="object-cover object-[50%_38%]"
               priority
             />
           </span>
-          Pesqueiro Arruda&apos;s
+          <span className="text-lg leading-none font-semibold text-paper">
+            Pesqueiro <span className="font-script text-xl text-gold">Arruda&apos;s</span>
+          </span>
         </a>
 
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-7 md:flex">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-text-on-navy/80 transition-colors hover:text-gold"
+              className="text-sm font-semibold text-paper/75 transition-colors hover:text-gold"
             >
               {link.label}
             </a>
@@ -59,7 +57,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setOpen((prev) => !prev)}
-          className="text-text-on-navy md:hidden"
+          className="text-paper md:hidden"
           aria-label={open ? "Fechar menu" : "Abrir menu"}
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -67,14 +65,14 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div className="border-t border-white/10 bg-navy px-4 pb-4 md:hidden">
+        <div className="border-t border-gold/20 bg-ink px-4 pb-4 md:hidden">
           <div className="flex flex-col gap-4 pt-4">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="text-sm font-medium text-text-on-navy/80 hover:text-gold"
+                className="text-sm font-semibold text-paper/80 hover:text-gold"
               >
                 {link.label}
               </a>
