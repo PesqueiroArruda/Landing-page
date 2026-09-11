@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Fish, Menu, X } from "lucide-react";
+import Image from "next/image";
+import { Menu, X } from "lucide-react";
 import Button from "@/components/ui/Button";
 import { whatsappReservaLink } from "@/lib/whatsapp";
 
@@ -24,7 +25,16 @@ export default function Navbar() {
           href="#top"
           className="flex items-center gap-2 font-heading text-lg font-bold text-text-on-navy"
         >
-          <Fish className="h-6 w-6 text-gold" />
+          <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full ring-1 ring-white/15">
+            <Image
+              src="/logo.jpeg"
+              alt="Logo Pesqueiro Arruda's"
+              fill
+              sizes="40px"
+              className="object-cover object-[50%_38%]"
+              priority
+            />
+          </span>
           Pesqueiro Arruda&apos;s
         </a>
 

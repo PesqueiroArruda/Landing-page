@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import Image from "next/image";
 import { Fish, Waves } from "lucide-react";
 import Button from "@/components/ui/Button";
 import { whatsappReservaLink } from "@/lib/whatsapp";
@@ -21,6 +22,22 @@ export default function Hero() {
       />
 
       <div className="relative mx-auto flex max-w-4xl flex-col items-center px-4 text-center sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="relative mb-6 h-24 w-24 overflow-hidden rounded-full shadow-lg ring-2 ring-gold/60 sm:h-28 sm:w-28"
+        >
+          <Image
+            src="/logo.jpeg"
+            alt="Logo Pesqueiro Arruda's"
+            fill
+            sizes="112px"
+            className="object-cover object-[50%_38%]"
+            priority
+          />
+        </motion.div>
+
         <motion.span
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}

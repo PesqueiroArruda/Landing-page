@@ -1,4 +1,5 @@
-import { Fish, MapPin, Phone } from "lucide-react";
+import Image from "next/image";
+import { MapPin, Phone } from "lucide-react";
 import { InstagramIcon } from "@/components/icons/InstagramIcon";
 
 const NAV_LINKS = [
@@ -17,8 +18,16 @@ export default function Footer() {
     <footer className="bg-navy px-4 py-12 text-text-on-navy sm:px-6">
       <div className="mx-auto flex max-w-6xl flex-col gap-10 sm:flex-row sm:justify-between">
         <div className="max-w-sm">
-          <div className="flex items-center gap-2 font-heading text-xl font-bold">
-            <Fish className="h-6 w-6 text-gold" />
+          <div className="flex items-center gap-3 font-heading text-xl font-bold">
+            <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full ring-1 ring-white/15">
+              <Image
+                src="/logo.jpeg"
+                alt="Logo Pesqueiro Arruda's"
+                fill
+                sizes="48px"
+                className="object-cover object-[50%_38%]"
+              />
+            </span>
             Pesqueiro Arruda&apos;s
           </div>
           <p className="mt-3 text-sm text-text-on-navy/70">

@@ -13,7 +13,12 @@ const manrope = Manrope({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : "http://localhost:3000";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Pesqueiro Arruda's | Pesca Esportiva e Restaurante em Santana de Parnaíba",
   description:
     "Mais que um pesqueiro, lugar de memórias. Pesca esportiva e restaurante à beira do lago no Pesqueiro Arruda's, em Santana de Parnaíba, SP. Peixe fresco, espaço kids e deck com vista pro lago.",
@@ -29,6 +34,7 @@ export const metadata: Metadata = {
       "Nossa família servindo a sua! Pesca, restaurante à beira do lago e lazer para a família toda, em Santana de Parnaíba, SP.",
     locale: "pt_BR",
     type: "website",
+    images: [{ url: "/logo.jpeg", width: 864, height: 1536, alt: "Logo Pesqueiro Arruda's" }],
   },
 };
 
