@@ -18,8 +18,8 @@ export default function Pesca() {
             <span aria-hidden className="mt-4 block h-0.75 w-14 rounded-full bg-gold" />
             <p className="mt-6 max-w-md text-base leading-relaxed text-bark/75 sm:text-lg">
               Pra quem curte o desafio da pescaria, com respeito ao esporte e
-              ao lago. Traga sua vara, escolha seu lugar no deck ou na margem
-              e aproveite o dia inteiro pescando com a família.
+              ao lago. Traga sua vara, escolha seu lugar na margem e
+              aproveite o dia inteiro pescando com a família.
             </p>
           </div>
         </div>
