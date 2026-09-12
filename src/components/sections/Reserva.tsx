@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState, useEffect } from "react";
+import { Info } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import SubmitButton from "@/components/ui/SubmitButton";
 import Reveal from "@/components/ui/Reveal";
@@ -40,6 +41,16 @@ export default function Reserva() {
             title="Faça sua reserva online"
             description={`Reservas exigem um sinal de R$ ${DEPOSIT_AMOUNT_BRL.toFixed(2).replace(".", ",")}, pago aqui mesmo pelo site via Pix ou cartão. O restante é pago no dia, no local.`}
           />
+        </Reveal>
+
+        <Reveal className="mb-6 flex items-start gap-3 rounded-xl border border-gold/30 bg-gold/10 px-4 py-3.5">
+          <Info className="mt-0.5 h-5 w-5 shrink-0 text-gold-deep" />
+          <p className="text-sm leading-relaxed text-bark/80">
+            <strong className="font-semibold text-ink">Política de cancelamento:</strong>{" "}
+            em caso de cancelamento, o valor do sinal não é reembolsado, mas
+            fica disponível para uso em uma nova reserva dentro de 30 dias a
+            partir da data reservada.
+          </p>
         </Reveal>
 
         <Reveal className="rounded-2xl border border-ink/10 bg-paper-soft">
