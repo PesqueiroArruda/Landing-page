@@ -1,5 +1,4 @@
-import { Baby } from "lucide-react";
-import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
+import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
 
 export default function AreaKids() {
@@ -8,12 +7,15 @@ export default function AreaKids() {
       <div className="mx-auto max-w-6xl">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal className="lg:order-2">
-            <ImagePlaceholder
-              icon={Baby}
-              label="Área Kids"
-              imagePath="/images/area-kids.jpg"
-              className="aspect-4/3 w-full rounded-2xl"
-            />
+            <div className="relative aspect-4/3 w-full overflow-hidden rounded-2xl">
+              <Image
+                src="/images/area-kids.jpg"
+                alt="Playground da área Kids do Pesqueiro Arruda's, com escorregador, gangorras e balanços"
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
           </Reveal>
           <Reveal className="lg:order-1">
             <h2 className="text-3xl leading-[1.1] font-semibold text-ink sm:text-4xl">
