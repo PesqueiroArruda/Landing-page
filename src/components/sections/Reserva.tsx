@@ -108,7 +108,7 @@ export default function Reserva() {
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
-              <div>
+              <div className="min-w-0">
                 <label htmlFor="reservationDate" className={labelClassName}>
                   Dia
                 </label>
@@ -117,7 +117,7 @@ export default function Reserva() {
                   name="reservationDate"
                   type="date"
                   required
-                  className={inputClassName}
+                  className={`${inputClassName} max-w-full`}
                 />
                 {fieldError("reservationDate") && (
                   <p className="mt-1 text-xs font-medium text-red-600">
@@ -126,7 +126,7 @@ export default function Reserva() {
                 )}
               </div>
 
-              <div>
+              <div className="min-w-0">
                 <label htmlFor="reservationTime" className={labelClassName}>
                   Horário
                 </label>
