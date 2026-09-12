@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Nunito, Permanent_Marker } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import CookieConsentBanner from "@/components/CookieConsentBanner";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -19,9 +21,10 @@ const permanentMarker = Permanent_Marker({
   weight: "400",
 });
 
-const siteUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000";
+// Mesma variável usada em src/lib/infinitepay.ts e src/app/actions/reservations.ts
+// para montar URLs públicas — VERCEL_URL aponta pro deploy interno (*.vercel.app),
+// não pro domínio customizado, então não serve de fallback aqui.
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -40,7 +43,6 @@ export const metadata: Metadata = {
       "Nossa família servindo a sua! Pesca, restaurante à beira do lago e lazer para a família toda, em Santana de Parnaíba, SP.",
     locale: "pt_BR",
     type: "website",
-    images: [{ url: "/logo.jpeg", width: 864, height: 1536, alt: "Logo Pesqueiro Arruda's" }],
   },
 };
 
@@ -50,7 +52,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="pt-BR"
       className={`${fraunces.variable} ${nunito.variable} ${permanentMarker.variable}`}
     >
-      <body className="min-h-screen antialiased">{children}</body>
+      <body className="min-h-screen antialiased">
+        {children}
+        <CookieConsentBanner />
+        <Analytics />
+      </body>
     </html>
   );
 }
