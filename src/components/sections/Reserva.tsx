@@ -58,6 +58,17 @@ export default function Reserva() {
           action={formAction}
           className="grid gap-4 p-6 sm:p-8"
         >
+            <div className="absolute h-0 w-0 overflow-hidden opacity-0" aria-hidden="true">
+              <label htmlFor="website">Não preencha este campo</label>
+              <input
+                type="text"
+                id="website"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
+
             <div>
               <label htmlFor="customerName" className={labelClassName}>
                 Nome completo
@@ -219,7 +230,12 @@ export default function Reserva() {
             <p className="text-center text-xs text-bark/55">
               Ao confirmar, você será redirecionado ao checkout seguro da
               InfinitePay para pagar o sinal de R${" "}
-              {DEPOSIT_AMOUNT_BRL.toFixed(2).replace(".", ",")}.
+              {DEPOSIT_AMOUNT_BRL.toFixed(2).replace(".", ",")}. Seus dados
+              são tratados conforme nossa{" "}
+              <a href="/privacidade" className="underline hover:text-ink">
+                Política de Privacidade
+              </a>
+              .
             </p>
           </form>
         </Reveal>

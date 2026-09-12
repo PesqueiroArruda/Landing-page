@@ -15,6 +15,14 @@ export async function createReservation(
   _prevState: CreateReservationState,
   formData: FormData
 ): Promise<CreateReservationState> {
+  // Honeypot: campo invisível que só bots costumam preencher.
+  if (formData.get("website")) {
+    return {
+      status: "error",
+      message: "Não foi possível registrar sua reserva. Tente novamente.",
+    };
+  }
+
   const parsed = reservationSchema.safeParse({
     customerName: formData.get("customerName"),
     customerPhone: formData.get("customerPhone"),
