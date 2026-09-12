@@ -3,6 +3,14 @@ import { ChefHat, Drumstick, Fish, Soup } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 import { getMenu, type MenuItem } from "@/lib/menu";
+import { auth } from "@/auth";
+import { getMenuUserConsent } from "@/lib/menu-users";
+import CardapioAcesso from "@/components/sections/CardapioAcesso";
+import MarketingConsentToggle from "@/components/sections/MarketingConsentToggle";
+
+// Visitante sem login só vê uma prévia; ver a lista completa é o que
+// converte a visita em lead (login com Google).
+const PREVIEW_COUNT = 3;
 
 // Ícone genérico por categoria do cardápio — só usado quando o produto
 // ainda não tem foto configurada no Estoque.
@@ -62,7 +70,7 @@ function toRow(item: MenuItem) {
 }
 
 export default async function Cardapio() {
-  const menuItems = await getMenu();
+  const [menuItems, session] = await Promise.all([getMenu(), auth()]);
 
   // Sem produtos habilitados ainda (ou backend fora do ar): mantém os
   // pratos estáticos atuais, a seção nunca aparece vazia.
@@ -79,6 +87,12 @@ export default async function Cardapio() {
           imagePath: prato.imagePath,
         }));
 
+  const isAuthenticated = Boolean(session?.user.googleId);
+  const visibleRows = isAuthenticated ? rows : rows.slice(0, PREVIEW_COUNT);
+  const marketingConsent = isAuthenticated
+    ? await getMenuUserConsent(session!.user.googleId)
+    : false;
+
   return (
     <section id="cardapio" className="bg-paper px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-3xl">
@@ -89,7 +103,7 @@ export default async function Cardapio() {
 
         <div className="rounded-2xl border border-ink/10 bg-paper-soft p-3 sm:p-6">
           <ul className="divide-y divide-ink/10">
-            {rows.map((row) => (
+            {visibleRows.map((row) => (
               <li key={row.key} className="flex items-center gap-4 py-4 first:pt-1 last:pb-1 sm:gap-5 sm:py-5">
                 {row.imageUrl ? (
                   <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl sm:h-20 sm:w-20">
@@ -118,6 +132,12 @@ export default async function Cardapio() {
               </li>
             ))}
           </ul>
+
+          {isAuthenticated ? (
+            <MarketingConsentToggle initialConsent={marketingConsent} />
+          ) : (
+            <CardapioAcesso hiddenCount={rows.length - visibleRows.length} />
+          )}
         </div>
       </div>
     </section>
