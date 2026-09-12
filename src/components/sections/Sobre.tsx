@@ -10,7 +10,7 @@ const DIFERENCIAIS = [
   },
   {
     icon: HeartHandshake,
-    text: "A nossa família própria trabalha no salão, com a mesma tradição de sempre",
+    text: "A nossa própria família trabalha no salão, com a mesma tradição de sempre",
   },
   {
     icon: Sun,
