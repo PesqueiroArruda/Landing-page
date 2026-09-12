@@ -1,6 +1,8 @@
 import { Building2, CakeSlice } from "lucide-react";
 import Button from "@/components/ui/Button";
 import { whatsappEventosLink } from "@/lib/whatsapp";
+import Reveal from "@/components/ui/Reveal";
+import { RevealGrid, RevealItem } from "@/components/ui/RevealGroup";
 
 const OCASIOES = [
   {
@@ -22,7 +24,7 @@ export default function Eventos() {
     <section id="eventos" className="bg-lake px-4 py-20 text-paper sm:px-6 sm:py-28">
       <div className="mx-auto max-w-5xl">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-          <div>
+          <Reveal>
             <h2 className="text-3xl leading-[1.1] font-semibold sm:text-4xl">
               Seu evento merece um lugar assim.
             </h2>
@@ -35,17 +37,17 @@ export default function Eventos() {
                 Falar sobre meu evento
               </Button>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="grid gap-8 sm:grid-cols-2 sm:divide-x sm:divide-paper/15">
+          <RevealGrid className="grid gap-8 sm:grid-cols-2 sm:divide-x sm:divide-paper/15">
             {OCASIOES.map(({ icon: Icon, titulo, descricao }, index) => (
-              <div key={titulo} className={index === 1 ? "sm:pl-8" : ""}>
+              <RevealItem key={titulo} className={index === 1 ? "sm:pl-8" : ""}>
                 <Icon className="h-7 w-7 text-gold" strokeWidth={1.75} />
                 <h3 className="mt-4 text-lg font-semibold">{titulo}</h3>
                 <p className="mt-2 text-sm text-paper/70">{descricao}</p>
-              </div>
+              </RevealItem>
             ))}
-          </div>
+          </RevealGrid>
         </div>
       </div>
     </section>

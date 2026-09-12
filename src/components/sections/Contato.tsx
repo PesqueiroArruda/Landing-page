@@ -3,6 +3,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
 import { InstagramIcon } from "@/components/icons/InstagramIcon";
 import { whatsappReservaLink } from "@/lib/whatsapp";
+import Reveal from "@/components/ui/Reveal";
 
 const ENDERECO = "Rua Anna Moraes de Faria, 112, Santana de Parnaíba, SP";
 const MAPS_EMBED_SRC = `https://www.google.com/maps?q=${encodeURIComponent(
@@ -13,13 +14,15 @@ export default function Contato() {
   return (
     <section id="contato" className="bg-paper-soft px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading
-          title="Vem nos visitar"
-          description="Terça a domingo, das 8h às 17h. Fechado às segundas, exceto feriados."
-        />
+        <Reveal>
+          <SectionHeading
+            title="Vem nos visitar"
+            description="Terça a domingo, das 8h às 17h. Fechado às segundas, exceto feriados."
+          />
+        </Reveal>
 
         <div className="grid gap-8 lg:grid-cols-2">
-          <div className="order-2 flex flex-col gap-6 lg:order-1">
+          <Reveal className="order-2 flex flex-col gap-6 lg:order-1">
             <div className="flex items-start gap-3">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-lake/10 text-lake">
                 <MapPin className="h-5 w-5" />
@@ -85,9 +88,9 @@ export default function Contato() {
                 Reservar pelo WhatsApp
               </Button>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="order-1 lg:order-2">
+          <Reveal className="order-1 lg:order-2">
             <div className="aspect-4/3 w-full overflow-hidden rounded-2xl border border-ink/10 lg:aspect-auto lg:h-full">
               <iframe
                 src={MAPS_EMBED_SRC}
@@ -100,7 +103,7 @@ export default function Contato() {
                 title="Localização do Pesqueiro Arruda's no Google Maps"
               />
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

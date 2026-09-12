@@ -1,5 +1,7 @@
 import { Fish, HeartHandshake, Sun, UtensilsCrossed } from "lucide-react";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
+import Reveal from "@/components/ui/Reveal";
+import { RevealList, RevealListItem } from "@/components/ui/RevealGroup";
 
 const DIFERENCIAIS = [
   {
@@ -24,7 +26,7 @@ export default function Sobre() {
   return (
     <section id="sobre" className="bg-paper-soft px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-20">
-        <div>
+        <Reveal>
           <h2 className="text-3xl leading-[1.1] font-semibold text-ink sm:text-4xl">
             Nossa família servindo a sua
           </h2>
@@ -40,26 +42,28 @@ export default function Sobre() {
             visita um momento de verdade em família.
           </p>
 
-          <ul className="mt-9 flex flex-col gap-4">
+          <RevealList className="mt-9 flex flex-col gap-4">
             {DIFERENCIAIS.map(({ icon: Icon, text }) => (
-              <li key={text} className="flex items-start gap-3">
+              <RevealListItem key={text} className="flex items-start gap-3">
                 <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-lake/12 text-lake">
                   <Icon className="h-4 w-4" />
                 </span>
                 <span className="text-sm text-bark/80 sm:text-base">
                   {text}
                 </span>
-              </li>
+              </RevealListItem>
             ))}
-          </ul>
-        </div>
+          </RevealList>
+        </Reveal>
 
-        <ImagePlaceholder
-          icon={Fish}
-          label="Nossa família à beira do lago"
-          imagePath="/images/sobre-familia.jpg"
-          className="aspect-4/3 w-full rounded-2xl"
-        />
+        <Reveal>
+          <ImagePlaceholder
+            icon={Fish}
+            label="Nossa família à beira do lago"
+            imagePath="/images/sobre-familia.jpg"
+            className="aspect-4/3 w-full rounded-2xl"
+          />
+        </Reveal>
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { MapPin, Phone } from "lucide-react";
 import { InstagramIcon } from "@/components/icons/InstagramIcon";
+import Reveal from "@/components/ui/Reveal";
 
 const NAV_LINKS = [
   { href: "#sobre", label: "Sobre" },
@@ -17,7 +18,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-ink px-4 py-14 text-paper sm:px-6">
-      <div className="mx-auto flex max-w-6xl flex-col gap-10 sm:flex-row sm:justify-between">
+      <Reveal className="mx-auto flex max-w-6xl flex-col gap-10 sm:flex-row sm:justify-between">
         <div className="max-w-sm">
           <div className="flex items-center gap-3">
             <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full ring-2 ring-gold/70">
@@ -78,7 +79,7 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-      </div>
+      </Reveal>
 
       <div className="mx-auto mt-10 max-w-6xl border-t border-paper/10 pt-6 text-center text-xs text-paper/50">
         © {year} Pesqueiro Arruda&apos;s. Todos os direitos reservados.

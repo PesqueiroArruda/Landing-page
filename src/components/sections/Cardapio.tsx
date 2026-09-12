@@ -7,6 +7,8 @@ import { auth } from "@/auth";
 import { getMenuUserConsent } from "@/lib/menu-users";
 import CardapioAcesso from "@/components/sections/CardapioAcesso";
 import MarketingConsentToggle from "@/components/sections/MarketingConsentToggle";
+import Reveal from "@/components/ui/Reveal";
+import { RevealList, RevealListItem } from "@/components/ui/RevealGroup";
 
 // Visitante sem login só vê uma prévia; ver a lista completa é o que
 // converte a visita em lead (login com Google).
@@ -96,15 +98,17 @@ export default async function Cardapio() {
   return (
     <section id="cardapio" className="bg-paper px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-3xl">
-        <SectionHeading
-          title="Muito além da pesca, um restaurante completo"
-          description="Pratos, porções, bebidas e sobremesas — com destaque pra essas especialidades da casa."
-        />
+        <Reveal>
+          <SectionHeading
+            title="Muito além da pesca, um restaurante completo"
+            description="Pratos, porções, bebidas e sobremesas — com destaque pra essas especialidades da casa."
+          />
+        </Reveal>
 
         <div className="rounded-2xl border border-ink/10 bg-paper-soft p-3 sm:p-6">
-          <ul className="divide-y divide-ink/10">
+          <RevealList className="divide-y divide-ink/10">
             {visibleRows.map((row) => (
-              <li key={row.key} className="flex items-center gap-4 py-4 first:pt-1 last:pb-1 sm:gap-5 sm:py-5">
+              <RevealListItem key={row.key} className="flex items-center gap-4 py-4 first:pt-1 last:pb-1 sm:gap-5 sm:py-5">
                 {row.imageUrl ? (
                   <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl sm:h-20 sm:w-20">
                     <Image src={row.imageUrl} alt={row.nome} fill className="object-cover" />
@@ -129,9 +133,9 @@ export default async function Cardapio() {
                     {row.preco}
                   </span>
                 )}
-              </li>
+              </RevealListItem>
             ))}
-          </ul>
+          </RevealList>
 
           {isAuthenticated ? (
             <MarketingConsentToggle initialConsent={marketingConsent} />

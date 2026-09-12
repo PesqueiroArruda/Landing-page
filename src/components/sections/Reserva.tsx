@@ -3,6 +3,7 @@
 import { useActionState, useEffect } from "react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import SubmitButton from "@/components/ui/SubmitButton";
+import Reveal from "@/components/ui/Reveal";
 import {
   createReservation,
   type CreateReservationState,
@@ -34,14 +35,17 @@ export default function Reserva() {
   return (
     <section id="reserva" className="bg-paper px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-2xl">
-        <SectionHeading
-          title="Faça sua reserva online"
-          description={`Reservas exigem um sinal de R$ ${DEPOSIT_AMOUNT_BRL.toFixed(2).replace(".", ",")}, pago aqui mesmo pelo site via Pix ou cartão. O restante é pago no dia, no local.`}
-        />
+        <Reveal>
+          <SectionHeading
+            title="Faça sua reserva online"
+            description={`Reservas exigem um sinal de R$ ${DEPOSIT_AMOUNT_BRL.toFixed(2).replace(".", ",")}, pago aqui mesmo pelo site via Pix ou cartão. O restante é pago no dia, no local.`}
+          />
+        </Reveal>
 
+        <Reveal className="rounded-2xl border border-ink/10 bg-paper-soft">
         <form
           action={formAction}
-          className="grid gap-4 rounded-2xl border border-ink/10 bg-paper-soft p-6 sm:p-8"
+          className="grid gap-4 p-6 sm:p-8"
         >
             <div>
               <label htmlFor="customerName" className={labelClassName}>
@@ -207,6 +211,7 @@ export default function Reserva() {
               {DEPOSIT_AMOUNT_BRL.toFixed(2).replace(".", ",")}.
             </p>
           </form>
+        </Reveal>
       </div>
     </section>
   );
