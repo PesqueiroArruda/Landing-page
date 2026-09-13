@@ -16,7 +16,7 @@ export type MenuItem = {
 export async function getMenu(): Promise<MenuItem[]> {
   try {
     const res = await fetch(`${process.env.BACKEND_API_URL}/menu`, {
-      next: { revalidate: 60 },
+      cache: "no-store",
     });
 
     if (!res.ok) return [];
