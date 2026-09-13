@@ -11,7 +11,7 @@ const PESCA_IMAGES = [
   { src: "/images/pesca-7.jpg", alt: "Criança sorrindo com a vara de pescar" },
   { src: "/images/pesca-8.jpg", alt: "Pai e filha pescando sentados na margem do lago" },
   { src: "/images/pesca-9.jpg", alt: "Vista do lago do Pesqueiro Arruda's a partir de uma mesa na área coberta" },
-  { src: "/images/pesca-10.jpg", alt: "Pescador à beira do lago perto da área kids" },
+  { src: "/images/pesca-10.jpg", alt: "Pescador sentado na margem do lago do Pesqueiro Arruda's" },
   { src: "/images/pesca-11.jpg", alt: "Visitante pescando em dia de sol no Pesqueiro Arruda's" },
   { src: "/images/pesca-12.jpg", alt: "Amigos pescando juntos na margem do lago" },
   { src: "/images/pesca-13.jpg", alt: "Pescador recolhendo o puçá com o peixe fisgado" },
