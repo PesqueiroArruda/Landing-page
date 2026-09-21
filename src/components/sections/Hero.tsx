@@ -63,7 +63,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.35 }}
             className="mt-8 text-sm text-paper/55"
           >
-            Terça a domingo, 8h às 17h · (11) 97231-1736
+            Terça a domingo, 8h às 17h · (11) 91921-4978
           </motion.p>
         </div>
 

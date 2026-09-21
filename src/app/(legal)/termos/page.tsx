@@ -106,8 +106,8 @@ export default function TermosPage() {
       <h2 className={h2Class}>8. Contato</h2>
       <p className={pClass}>
         Dúvidas sobre estes termos podem ser tiradas pelo WhatsApp{" "}
-        <a href="tel:+5511972311736" className="font-semibold text-lake hover:underline">
-          (11) 97231-1736
+        <a href="tel:+5511919214978" className="font-semibold text-lake hover:underline">
+          (11) 91921-4978
         </a>
         .
       </p>

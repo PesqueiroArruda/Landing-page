@@ -126,8 +126,8 @@ export default function PrivacidadePage() {
       <p className={pClass}>
         Para exercer qualquer um desses direitos, entre em contato pelo
         WhatsApp{" "}
-        <a href="tel:+5511972311736" className="font-semibold text-lake hover:underline">
-          (11) 97231-1736
+        <a href="tel:+5511919214978" className="font-semibold text-lake hover:underline">
+          (11) 91921-4978
         </a>
         .
       </p>

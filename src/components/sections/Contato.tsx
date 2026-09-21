@@ -58,10 +58,10 @@ export default function Contato() {
                   Telefone / WhatsApp
                 </h3>
                 <a
-                  href="tel:+5511972311736"
+                  href="tel:+5511919214978"
                   className="text-sm text-bark/70 hover:text-lake sm:text-base"
                 >
-                  (11) 97231-1736
+                  (11) 91921-4978
                 </a>
               </div>
             </div>
