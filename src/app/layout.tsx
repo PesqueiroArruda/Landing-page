@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Nunito, Permanent_Marker } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import CookieConsentBanner from "@/components/CookieConsentBanner";
+import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -21,10 +22,7 @@ const permanentMarker = Permanent_Marker({
   weight: "400",
 });
 
-// Mesma variável usada em src/lib/infinitepay.ts e src/app/actions/reservations.ts
-// para montar URLs públicas — VERCEL_URL aponta pro deploy interno (*.vercel.app),
-// não pro domínio customizado, então não serve de fallback aqui.
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

@@ -1,4 +1,5 @@
 import "server-only";
+import { getSiteUrl } from "@/lib/site-url";
 
 const CHECKOUT_API_BASE = "https://api.checkout.infinitepay.io";
 
@@ -6,10 +7,6 @@ function getHandle(): string {
   const handle = process.env.INFINITEPAY_HANDLE;
   if (!handle) throw new Error("INFINITEPAY_HANDLE ausente.");
   return handle;
-}
-
-function getSiteUrl(): string {
-  return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 }
 
 type CreateLinkResponse = {
