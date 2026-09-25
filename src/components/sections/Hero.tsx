@@ -105,7 +105,7 @@ export default function Hero() {
 
       <Waterline
         animated={!shouldReduceMotion}
-        className="absolute right-0 bottom-0 left-0 h-10 w-full text-paper sm:h-14"
+        className="absolute right-0 bottom-0 left-0 h-10 w-full text-bark sm:h-14"
       />
     </section>
   );
