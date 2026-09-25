@@ -71,7 +71,7 @@ export default function Carousel({
             type="button"
             onClick={() => goTo(index - 1)}
             aria-label="Foto anterior"
-            className="absolute top-1/2 left-3 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-ink-deep/50 text-paper opacity-0 transition-opacity group-hover:opacity-100 hover:bg-ink-deep/70 focus-visible:opacity-100"
+            className="absolute top-1/2 left-3 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-ink-deep/50 text-paper opacity-0 transition-opacity group-hover:opacity-100 hover:bg-ink-deep/70 focus-visible:opacity-100 pointer-coarse:opacity-100"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
@@ -79,7 +79,7 @@ export default function Carousel({
             type="button"
             onClick={() => goTo(index + 1)}
             aria-label="Próxima foto"
-            className="absolute top-1/2 right-3 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-ink-deep/50 text-paper opacity-0 transition-opacity group-hover:opacity-100 hover:bg-ink-deep/70 focus-visible:opacity-100"
+            className="absolute top-1/2 right-3 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-ink-deep/50 text-paper opacity-0 transition-opacity group-hover:opacity-100 hover:bg-ink-deep/70 focus-visible:opacity-100 pointer-coarse:opacity-100"
           >
             <ChevronRight className="h-5 w-5" />
           </button>
