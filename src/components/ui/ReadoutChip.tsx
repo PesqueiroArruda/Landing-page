@@ -5,7 +5,7 @@ interface ReadoutChipProps {
   light?: boolean;
 }
 
-/** Leitura numérica precisa, tipo painel medidor — usado pra horário, sinal e capacidade reais. */
+/** Leitura numérica precisa, tipo painel medidor: usado pra horário, sinal e capacidade reais. */
 export default function ReadoutChip({ label, value, className = "", light = false }: ReadoutChipProps) {
   return (
     <div
