@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Nunito, Permanent_Marker } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import CookieConsentBanner from "@/components/CookieConsentBanner";
+import SmoothScroll from "@/components/SmoothScroll";
 import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
@@ -59,6 +60,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </a>
         {children}
         <CookieConsentBanner />
+        <SmoothScroll />
         <Analytics />
       </body>
     </html>

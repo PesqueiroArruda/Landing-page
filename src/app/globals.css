@@ -28,7 +28,10 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* Scroll suave dos links de ancora fica por conta do Lenis
+     (SmoothScroll.tsx); aqui fica so o offset e o fallback instantaneo
+     pra navegacao sem JS (ex: hash direto na URL). */
+  scroll-behavior: auto;
   scroll-padding-top: 88px;
 }
 
