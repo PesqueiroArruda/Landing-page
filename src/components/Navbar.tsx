@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { Menu, X } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Signpost from "@/components/ui/Signpost";
+import { easeOut } from "@/lib/motion";
 
 const NAV_LINKS = [
   { href: "#sobre", label: "Sobre" },
@@ -19,16 +21,11 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { scrollY } = useScroll();
 
-  useEffect(() => {
-    function handleScroll() {
-      setScrolled(window.scrollY > 8);
-    }
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setScrolled(latest > 8);
+  });
 
   return (
     <header
@@ -81,25 +78,33 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {open && (
-        <div className="border-t border-gold/20 bg-ink px-4 pb-4 md:hidden">
-          <div className="flex flex-col gap-4 pt-4">
-            {NAV_LINKS.map((link) => (
-              <Signpost
-                key={link.href}
-                href={link.href}
-                className="text-sm font-semibold text-paper/80 hover:text-paper"
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </Signpost>
-            ))}
-            <Button href="#reserva" variant="primary" className="mt-2 w-full">
-              Reservar
-            </Button>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, transform: "translateY(-8px)" }}
+            animate={{ opacity: 1, transform: "translateY(0px)" }}
+            exit={{ opacity: 0, transform: "translateY(-8px)" }}
+            transition={{ duration: 0.2, ease: easeOut }}
+            className="border-t border-gold/20 bg-ink px-4 pb-4 md:hidden"
+          >
+            <div className="flex flex-col gap-4 pt-4">
+              {NAV_LINKS.map((link) => (
+                <Signpost
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-semibold text-paper/80 hover:text-paper"
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </Signpost>
+              ))}
+              <Button href="#reserva" variant="primary" className="mt-2 w-full">
+                Reservar
+              </Button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
