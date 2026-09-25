@@ -2,6 +2,7 @@ import { Fish, HeartHandshake, Sun, UtensilsCrossed } from "lucide-react";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 import Reveal from "@/components/ui/Reveal";
 import { RevealList, RevealListItem } from "@/components/ui/RevealGroup";
+import ChalkRule from "@/components/ui/ChalkRule";
 
 const DIFERENCIAIS = [
   {
@@ -24,20 +25,20 @@ const DIFERENCIAIS = [
 
 export default function Sobre() {
   return (
-    <section id="sobre" className="bg-paper-soft px-4 py-20 sm:px-6 sm:py-28">
+    <section id="sobre" className="bg-chalkdust bg-bark px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-20">
         <Reveal>
-          <h2 className="text-3xl leading-[1.1] font-semibold text-ink sm:text-4xl">
+          <h2 className="text-chalk text-3xl leading-[1.2] font-normal text-paper sm:text-4xl">
             Nossa família servindo a sua
           </h2>
-          <span aria-hidden className="mt-4 block h-0.75 w-14 rounded-full bg-gold" />
+          <ChalkRule className="text-gold" />
 
-          <p className="mt-6 max-w-md text-base leading-relaxed text-bark/75 sm:text-lg">
+          <p className="mt-6 max-w-md text-base leading-relaxed text-paper/75 sm:text-lg">
             Em Santana de Parnaíba, o Pesqueiro Arruda&apos;s é o destino
             ideal pra passar o dia com quem você ama — seja pescando na nossa
             pesca esportiva, seja só sentando pra comer bem à beira do lago.
           </p>
-          <p className="mt-4 max-w-md text-base leading-relaxed text-bark/75 sm:text-lg">
+          <p className="mt-4 max-w-md text-base leading-relaxed text-paper/75 sm:text-lg">
             É a nossa família cuidando de cada detalhe, pra fazer da sua
             visita um momento de verdade em família.
           </p>
@@ -45,10 +46,10 @@ export default function Sobre() {
           <RevealList className="mt-9 flex flex-col gap-4">
             {DIFERENCIAIS.map(({ icon: Icon, text }) => (
               <RevealListItem key={text} className="flex items-start gap-3">
-                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-lake/12 text-lake">
-                  <Icon className="h-4 w-4" />
+                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-lake/25 text-lake-deep ring-1 ring-lake/40">
+                  <Icon className="h-4 w-4 text-gold" />
                 </span>
-                <span className="text-sm text-bark/80 sm:text-base">
+                <span className="text-sm text-paper/80 sm:text-base">
                   {text}
                 </span>
               </RevealListItem>
@@ -61,7 +62,7 @@ export default function Sobre() {
             icon={Fish}
             label="Nossa família à beira do lago"
             imagePath="/images/sobre-familia.jpg"
-            className="aspect-4/3 w-full rounded-2xl"
+            className="aspect-4/3 w-full rounded-sm"
           />
         </Reveal>
       </div>

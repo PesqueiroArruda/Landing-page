@@ -14,11 +14,12 @@ import {
   ENVIRONMENT_OPTIONS,
   DEPOSIT_AMOUNT_BRL,
 } from "@/lib/reservations";
+import ReadoutChip from "@/components/ui/ReadoutChip";
 
 const initialState: CreateReservationState = { status: "idle" };
 
 const inputClassName =
-  "w-full rounded-xl border border-ink/15 bg-white px-4 py-2.5 text-sm text-ink placeholder:text-bark/35 focus:border-lake focus:outline-none focus:ring-2 focus:ring-lake/25 sm:text-base";
+  "w-full rounded-sm border border-ink/15 bg-white px-4 py-2.5 text-sm text-ink placeholder:text-bark/35 focus:border-lake focus:outline-none focus:ring-2 focus:ring-lake/25 sm:text-base";
 
 const labelClassName = "mb-1.5 block text-sm font-semibold text-ink";
 
@@ -39,11 +40,17 @@ export default function Reserva() {
         <Reveal>
           <SectionHeading
             title="Faça sua reserva online"
-            description={`Reservas exigem um sinal de R$ ${DEPOSIT_AMOUNT_BRL.toFixed(2).replace(".", ",")}, pago aqui mesmo pelo site via Pix ou cartão. O restante é pago no dia, no local.`}
+            description="Pago aqui mesmo pelo site via Pix ou cartão. O restante é pago no dia, no local."
+            onLight
+          />
+          <ReadoutChip
+            label="Sinal"
+            value={`R$ ${DEPOSIT_AMOUNT_BRL.toFixed(2).replace(".", ",")}`}
+            className="-mt-8 mb-8"
           />
         </Reveal>
 
-        <Reveal className="mb-6 flex items-start gap-3 rounded-xl border border-gold/30 bg-gold/10 px-4 py-3.5">
+        <Reveal className="mb-6 flex items-start gap-3 rounded-sm border-2 border-dashed border-gold/40 bg-gold/10 px-4 py-3.5">
           <Info className="mt-0.5 h-5 w-5 shrink-0 text-gold-deep" />
           <p className="text-sm leading-relaxed text-bark/80">
             <strong className="font-semibold text-ink">Política de cancelamento:</strong>{" "}
@@ -53,7 +60,7 @@ export default function Reserva() {
           </p>
         </Reveal>
 
-        <Reveal className="rounded-2xl border border-ink/10 bg-paper-soft">
+        <Reveal className="rounded-sm border border-ink/10 bg-paper-soft">
         <form
           action={formAction}
           className="grid gap-4 p-6 sm:p-8"

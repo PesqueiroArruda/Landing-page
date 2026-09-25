@@ -37,6 +37,9 @@ yarn-error.log*
 # playwright
 /.playwright-mcp/
 
+# impeccable design tooling (local scratch: mocks, review captures, surface briefs)
+/.impeccable/
+
 # vercel
 .vercel
 

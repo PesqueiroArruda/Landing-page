@@ -36,7 +36,7 @@ export default function CookieConsentBanner() {
       role="dialog"
       aria-live="polite"
       aria-label="Aviso de cookies"
-      className="fixed inset-x-0 bottom-0 z-[60] border-t border-gold/30 bg-ink px-4 py-4 text-paper shadow-lg sm:px-6"
+      className="bg-chalkdust fixed inset-x-0 bottom-0 z-[60] border-t-2 border-dashed border-gold/30 bg-ink px-4 py-4 text-paper shadow-lg sm:px-6"
     >
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 sm:flex-row sm:justify-between">
         <p className="text-center text-sm text-paper/80 sm:text-left">
@@ -50,7 +50,7 @@ export default function CookieConsentBanner() {
         <button
           type="button"
           onClick={dismiss}
-          className="shrink-0 rounded-full bg-gold px-5 py-2 text-sm font-semibold text-ink-deep transition-colors hover:bg-gold-deep"
+          className="shrink-0 rounded-sm border-2 border-dashed border-ink-deep/40 bg-gold px-5 py-2 text-sm font-semibold text-ink-deep transition-colors hover:bg-gold-deep"
         >
           Entendi
         </button>

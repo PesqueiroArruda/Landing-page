@@ -132,7 +132,7 @@ export default async function Cardapio() {
     : false;
 
   return (
-    <section id="cardapio" className="bg-paper px-4 py-20 sm:px-6 sm:py-28">
+    <section id="cardapio" className="bg-chalkdust bg-ink px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-4xl">
         <Reveal>
           <SectionHeading
@@ -141,20 +141,20 @@ export default async function Cardapio() {
           />
         </Reveal>
 
-        <div className="rounded-2xl border border-ink/10 bg-paper-soft p-3 sm:p-6">
+        <div className="rounded-sm border-2 border-dashed border-paper/15 p-3 sm:p-6">
           {categorias.map(({ categoria, items }, index) => (
             <div
               key={categoria}
-              className={`mb-8 last:mb-0 ${index > 0 ? "border-t border-ink/10 pt-8" : ""}`}
+              className={`mb-8 last:mb-0 ${index > 0 ? "border-t border-dashed border-paper/15 pt-8" : ""}`}
             >
-              <h3 className="mb-4 text-xs font-bold tracking-widest text-gold-deep uppercase sm:text-sm">
+              <h3 className="text-chalk mb-4 font-script text-lg text-gold">
                 {categoria}
               </h3>
               <RevealGrid className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
                 {items.map((row) => (
                   <RevealItem
                     key={row.key}
-                    className="flex flex-col overflow-hidden rounded-xl border border-ink/10 bg-white"
+                    className="flex flex-col overflow-hidden rounded-sm border border-ink/10 bg-paper-soft"
                   >
                     <div className="relative aspect-square w-full shrink-0">
                       {row.imageUrl ? (
@@ -175,7 +175,7 @@ export default async function Cardapio() {
                         {row.descricao}
                       </p>
                       {row.preco && (
-                        <span className="mt-auto pt-1 text-sm font-semibold text-lake">
+                        <span className="font-readout mt-auto pt-1 text-sm font-medium text-lake-deep">
                           {row.preco}
                         </span>
                       )}

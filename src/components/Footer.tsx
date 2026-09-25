@@ -18,7 +18,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-ink px-4 py-14 text-paper sm:px-6">
+    <footer className="bg-chalkdust bg-ink px-4 py-14 text-paper sm:px-6">
       <Reveal className="mx-auto flex max-w-6xl flex-col gap-10 sm:flex-row sm:justify-between">
         <div className="max-w-sm">
           <div className="flex items-center gap-3">
@@ -31,8 +31,8 @@ export default function Footer() {
                 className="object-cover object-[50%_38%]"
               />
             </span>
-            <span className="text-lg leading-none font-semibold">
-              Pesqueiro <span className="font-script text-xl text-gold">Arruda&apos;s</span>
+            <span className="font-script text-chalk text-xl leading-none">
+              Pesqueiro <span className="text-gold">Arruda&apos;s</span>
             </span>
           </div>
           <p className="mt-4 text-sm text-paper/60">
@@ -42,7 +42,9 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold text-gold">Links rápidos</h3>
+          <h3 className="font-readout text-xs tracking-[0.14em] text-gold uppercase">
+            Sítio
+          </h3>
           <ul className="mt-4 flex flex-col gap-2 text-sm text-paper/70">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
@@ -55,7 +57,9 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold text-gold">Contato</h3>
+          <h3 className="font-readout text-xs tracking-[0.14em] text-gold uppercase">
+            Contato
+          </h3>
           <ul className="mt-4 flex flex-col gap-3 text-sm text-paper/70">
             <li className="flex items-start gap-2">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold/80" />

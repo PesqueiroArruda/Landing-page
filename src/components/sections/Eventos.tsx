@@ -3,6 +3,8 @@ import Button from "@/components/ui/Button";
 import { whatsappEventosLink } from "@/lib/whatsapp";
 import Reveal from "@/components/ui/Reveal";
 import { RevealGrid, RevealItem } from "@/components/ui/RevealGroup";
+import ChalkRule from "@/components/ui/ChalkRule";
+import Waterline from "@/components/ui/Waterline";
 
 const OCASIOES = [
   {
@@ -21,14 +23,14 @@ const OCASIOES = [
 
 export default function Eventos() {
   return (
-    <section id="eventos" className="bg-lake px-4 py-20 text-paper sm:px-6 sm:py-28">
+    <section id="eventos" className="bg-chalkdust relative bg-lake px-4 pt-20 pb-28 text-paper sm:px-6 sm:pt-28 sm:pb-36">
       <div className="mx-auto max-w-5xl">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <Reveal>
-            <h2 className="text-3xl leading-[1.1] font-semibold sm:text-4xl">
+            <h2 className="text-chalk text-3xl leading-[1.2] font-normal sm:text-4xl">
               Seu evento merece um lugar assim.
             </h2>
-            <span aria-hidden className="mt-4 block h-0.75 w-14 rounded-full bg-gold" />
+            <ChalkRule className="text-gold" />
             <p className="mt-6 max-w-sm text-base leading-relaxed text-paper/75 sm:text-lg">
               Fale com a gente e organize sua comemoração à beira do lago.
             </p>
@@ -39,17 +41,22 @@ export default function Eventos() {
             </div>
           </Reveal>
 
-          <RevealGrid className="grid gap-8 sm:grid-cols-2 sm:divide-x sm:divide-paper/15">
+          <RevealGrid className="grid gap-8 sm:grid-cols-2 sm:divide-x sm:divide-dashed sm:divide-paper/20">
             {OCASIOES.map(({ icon: Icon, titulo, descricao }, index) => (
               <RevealItem key={titulo} className={index === 1 ? "sm:pl-8" : ""}>
                 <Icon className="h-7 w-7 text-gold" strokeWidth={1.75} />
-                <h3 className="mt-4 text-lg font-semibold">{titulo}</h3>
+                <h3 className="font-script mt-4 text-lg text-paper">{titulo}</h3>
                 <p className="mt-2 text-sm text-paper/70">{descricao}</p>
               </RevealItem>
             ))}
           </RevealGrid>
         </div>
       </div>
+
+      <Waterline
+        animated
+        className="absolute right-0 bottom-0 left-0 h-10 w-full text-paper sm:h-14"
+      />
     </section>
   );
 }

@@ -18,6 +18,7 @@ export default function Contato() {
           <SectionHeading
             title="Vem nos visitar"
             description="Terça a domingo, das 8h às 17h. Fechado às segundas, exceto feriados."
+            onLight
           />
         </Reveal>
 
@@ -41,9 +42,10 @@ export default function Contato() {
               </span>
               <div>
                 <h3 className="font-semibold text-ink">Horário</h3>
-                <p className="text-sm text-bark/70 sm:text-base">
-                  Terça a domingo, das 8h às 17h.
-                  <br />
+                <p className="font-readout mt-1 text-sm text-bark/70 sm:text-base">
+                  Ter a dom, 8h às 17h
+                </p>
+                <p className="mt-0.5 text-xs text-bark/50">
                   Fechado às segundas, exceto feriados.
                 </p>
               </div>
@@ -59,7 +61,7 @@ export default function Contato() {
                 </h3>
                 <a
                   href="tel:+5511919214978"
-                  className="text-sm text-bark/70 hover:text-lake sm:text-base"
+                  className="font-readout mt-1 block text-sm text-bark/70 hover:text-lake sm:text-base"
                 >
                   (11) 91921-4978
                 </a>
@@ -91,7 +93,7 @@ export default function Contato() {
           </Reveal>
 
           <Reveal className="order-1 lg:order-2">
-            <div className="aspect-4/3 w-full overflow-hidden rounded-2xl border border-ink/10 lg:aspect-auto lg:h-full">
+            <div className="aspect-4/3 w-full overflow-hidden rounded-sm border border-ink/10 lg:aspect-auto lg:h-full">
               <iframe
                 src={MAPS_EMBED_SRC}
                 width="100%"

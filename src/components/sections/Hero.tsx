@@ -5,6 +5,8 @@ import Image from "next/image";
 import Button from "@/components/ui/Button";
 import SealBadge from "@/components/ui/SealBadge";
 import Waterline from "@/components/ui/Waterline";
+import ReadoutChip from "@/components/ui/ReadoutChip";
+import ChalkRule from "@/components/ui/ChalkRule";
 
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
@@ -12,7 +14,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-ink pt-24 pb-16 text-paper sm:pt-28"
+      className="bg-chalkdust relative flex min-h-screen flex-col justify-center overflow-hidden bg-ink pt-24 pb-16 text-paper sm:pt-28"
     >
       <div
         aria-hidden
@@ -25,12 +27,13 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-4xl leading-[1.08] font-semibold sm:text-5xl lg:text-[3.4rem]"
+            className="chalk-smudge text-chalk text-4xl leading-[1.2] font-normal sm:text-5xl lg:text-[3.2rem]"
           >
             Mais que um pesqueiro,
             <br />
             lugar de memórias.
           </motion.h1>
+          <ChalkRule className="mx-auto text-gold lg:mx-0" />
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -57,14 +60,15 @@ export default function Hero() {
             </Button>
           </motion.div>
 
-          <motion.p
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.35 }}
-            className="mt-8 text-sm text-paper/55"
+            className="mx-auto mt-8 flex max-w-fit flex-wrap justify-center gap-3 lg:mx-0 lg:justify-start"
           >
-            Terça a domingo, 8h às 17h · (11) 91921-4978
-          </motion.p>
+            <ReadoutChip label="Horário" value="Ter a Dom, 8h às 17h" light />
+            <ReadoutChip label="Fone" value="(11) 91921-4978" light />
+          </motion.div>
         </div>
 
         <motion.div
@@ -101,7 +105,7 @@ export default function Hero() {
 
       <Waterline
         animated={!shouldReduceMotion}
-        className="absolute right-0 bottom-0 left-0 h-10 w-full text-paper sm:h-14"
+        className="absolute right-0 bottom-0 left-0 h-10 w-full text-bark sm:h-14"
       />
     </section>
   );

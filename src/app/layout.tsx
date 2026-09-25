@@ -1,15 +1,9 @@
 import type { Metadata } from "next";
-import { Fraunces, Nunito, Permanent_Marker } from "next/font/google";
+import { Nunito, Permanent_Marker, Fragment_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import CookieConsentBanner from "@/components/CookieConsentBanner";
 import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
-
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  axes: ["opsz", "SOFT", "WONK"],
-});
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -18,6 +12,12 @@ const nunito = Nunito({
 
 const permanentMarker = Permanent_Marker({
   variable: "--font-marker",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const fragmentMono = Fragment_Mono({
+  variable: "--font-fragment-mono",
   subsets: ["latin"],
   weight: "400",
 });
@@ -48,7 +48,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-BR"
-      className={`${fraunces.variable} ${nunito.variable} ${permanentMarker.variable}`}
+      className={`${nunito.variable} ${permanentMarker.variable} ${fragmentMono.variable}`}
     >
       <body className="min-h-screen antialiased">
         {children}

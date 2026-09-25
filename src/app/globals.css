@@ -11,9 +11,10 @@
   --color-paper-soft: #fbf7ec;
   --color-bark: #16130e;
 
-  --font-display: var(--font-fraunces);
+  --font-display: var(--font-marker);
   --font-body: var(--font-nunito);
   --font-script: var(--font-marker);
+  --font-readout: var(--font-fragment-mono);
 
   --animate-wave-drift: wave-drift 16s linear infinite;
 }
@@ -33,18 +34,56 @@ html {
 }
 
 body {
-  background: var(--color-paper);
-  color: var(--color-bark);
+  background: var(--color-bark);
+  color: var(--color-paper);
   font-family: var(--font-body);
 }
 
 h1,
 h2,
-h3,
-h4,
-h5,
-h6 {
+h3 {
   font-family: var(--font-display);
+  letter-spacing: 0.01em;
+}
+
+/* Giz na lousa: leve tremor de traço, sem contorno limpo demais. */
+.text-chalk {
+  text-shadow:
+    0.3px 0 0 rgba(246, 239, 220, 0.25),
+    -0.3px 0.4px 0 rgba(246, 239, 220, 0.15),
+    0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.text-chalk-dark {
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+/* Poeira de giz: pontilhado sutil sobre o fundo escuro da lousa. */
+.bg-chalkdust {
+  background-image: radial-gradient(rgba(246, 239, 220, 0.06) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+/* Traço apagado com o braço: mancha suave atrás de um número ou título. */
+.chalk-smudge {
+  position: relative;
+}
+.chalk-smudge::before {
+  content: "";
+  position: absolute;
+  inset: -10% -6%;
+  background: radial-gradient(ellipse at center, rgba(246, 239, 220, 0.08), transparent 70%);
+  pointer-events: none;
+}
+
+.font-readout {
+  font-family: var(--font-readout);
+  font-variant-numeric: tabular-nums;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-ink-deep);
 }
 
 @media (prefers-reduced-motion: reduce) {
