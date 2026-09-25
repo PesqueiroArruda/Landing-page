@@ -33,7 +33,7 @@ const COMODIDADES = [
 
 export default function Estrutura() {
   return (
-    <section id="estrutura" className="bg-paper px-4 py-20 sm:px-6 sm:py-28">
+    <section id="estrutura" className="bg-chalkdust bg-ink px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <SectionHeading
@@ -42,17 +42,14 @@ export default function Estrutura() {
           />
         </Reveal>
 
-        <RevealGrid className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-5">
+        <RevealGrid className="grid grid-cols-2 gap-x-6 gap-y-10 rounded-sm border-2 border-dashed border-paper/15 p-6 sm:grid-cols-5 sm:p-8">
           {COMODIDADES.map(({ icon: Icon, titulo, descricao }) => (
-            <RevealItem
-              key={titulo}
-              className="border-t-2 border-gold pt-4 transition-transform duration-200 hover:-translate-y-1"
-            >
-              <Icon className="h-6 w-6 text-lake" strokeWidth={1.75} />
-              <h3 className="mt-3 text-base font-semibold text-ink">
+            <RevealItem key={titulo} className="border-t-2 border-dashed border-gold/60 pt-4">
+              <Icon className="h-6 w-6 text-gold" strokeWidth={1.75} />
+              <h3 className="text-chalk mt-3 font-script text-base text-paper">
                 {titulo}
               </h3>
-              <p className="mt-1 text-sm text-bark/65">{descricao}</p>
+              <p className="mt-1 text-sm text-paper/60">{descricao}</p>
             </RevealItem>
           ))}
         </RevealGrid>

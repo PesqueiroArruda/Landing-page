@@ -31,7 +31,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 right-0 left-0 z-50 border-b border-gold/20 bg-ink transition-shadow duration-300 ${
+      className={`bg-chalkdust fixed top-0 right-0 left-0 z-50 border-b-2 border-dashed border-gold/25 bg-ink transition-shadow duration-300 ${
         scrolled ? "shadow-lg shadow-ink-deep/40" : ""
       }`}
     >
@@ -47,8 +47,8 @@ export default function Navbar() {
               priority
             />
           </span>
-          <span className="text-lg leading-none font-semibold text-paper">
-            Pesqueiro <span className="font-script text-xl text-gold">Arruda&apos;s</span>
+          <span className="font-script text-chalk text-xl leading-none text-paper">
+            Pesqueiro <span className="text-gold">Arruda&apos;s</span>
           </span>
         </a>
 
