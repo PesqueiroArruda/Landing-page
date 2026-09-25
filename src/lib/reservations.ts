@@ -25,8 +25,16 @@ export const TIME_SLOTS = Array.from(
 
 export const ENVIRONMENT_OPTIONS = [
   { value: "interno", label: "Ambiente interno" },
+  { value: "quiosque", label: "Ambiente quiosque" },
   { value: "externo", label: "Ambiente externo" },
 ] as const;
+
+// Capacidade máxima de pessoas por dia em cada ambiente.
+export const ENVIRONMENT_CAPACITY: Record<"interno" | "quiosque" | "externo", number> = {
+  interno: 60,
+  quiosque: 30,
+  externo: 80,
+};
 
 export const reservationSchema = z.object({
   customerName: z.string().trim().min(3, "Informe seu nome completo").max(120),
@@ -48,7 +56,7 @@ export const reservationSchema = z.object({
     }, "Fechamos às segundas-feiras, exceto feriados. Escolha outro dia."),
   reservationTime: z.enum(TIME_SLOTS as [string, ...string[]], "Escolha um horário entre 8h e 17h"),
   partySize: z.coerce.number().int("Informe um número inteiro").min(1, "Mínimo de 1 pessoa").max(60, "Para grupos maiores, fale com a gente pelo WhatsApp"),
-  environment: z.enum(["interno", "externo"], "Escolha o ambiente"),
+  environment: z.enum(["interno", "quiosque", "externo"], "Escolha o ambiente"),
   notes: z.string().trim().max(500).optional().or(z.literal("")),
 });
 

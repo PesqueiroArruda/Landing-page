@@ -32,7 +32,7 @@ export type ReservationRow = {
   reservation_date: string;
   reservation_time: string;
   party_size: number;
-  environment: "interno" | "externo";
+  environment: "interno" | "quiosque" | "externo";
   deposit_amount_cents: number;
   payment_status: "pending" | "paid" | "failed";
   infinitepay_invoice_slug: string | null;

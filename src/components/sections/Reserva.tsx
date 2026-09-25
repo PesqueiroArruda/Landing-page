@@ -179,7 +179,7 @@ export default function Reserva() {
 
               <div>
                 <span className={labelClassName}>Ambiente</span>
-                <div className="flex gap-4 pt-1">
+                <div className="flex flex-wrap gap-4 pt-1">
                   {ENVIRONMENT_OPTIONS.map((option, index) => (
                     <label
                       key={option.value}

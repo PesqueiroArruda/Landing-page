@@ -3,6 +3,7 @@
 import { reservationSchema, DEPOSIT_AMOUNT_CENTS } from "@/lib/reservations";
 import { getSupabaseAdmin } from "@/lib/supabase";
 import { createReservationCheckoutLink } from "@/lib/infinitepay";
+import { getAvailableSpots } from "@/lib/capacity";
 
 export type CreateReservationState = {
   status: "idle" | "error" | "success";
@@ -42,6 +43,27 @@ export async function createReservation(
   }
 
   const data = parsed.data;
+
+  try {
+    const availableSpots = await getAvailableSpots(data.reservationDate, data.environment);
+    if (data.partySize > availableSpots) {
+      const message =
+        availableSpots > 0
+          ? `Esse ambiente já está quase lotado nesse dia. Restam apenas ${availableSpots} vaga${availableSpots === 1 ? "" : "s"}.`
+          : "Esse ambiente já está com a capacidade esgotada para esse dia. Escolha outro ambiente ou outra data.";
+      return {
+        status: "error",
+        errors: { environment: [message] },
+        message,
+      };
+    }
+  } catch (err) {
+    console.error("Erro ao checar disponibilidade de vagas:", err);
+    return {
+      status: "error",
+      message: "Não foi possível checar a disponibilidade agora. Tente novamente.",
+    };
+  }
 
   let reservationId: string;
   try {

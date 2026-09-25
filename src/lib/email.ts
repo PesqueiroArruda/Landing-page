@@ -25,7 +25,8 @@ export async function sendReservationPaidEmail(
     | "reservation_time"
     | "party_size"
     | "environment"
-  >
+  >,
+  overCapacity = false
 ) {
   if (!TO || !process.env.RESEND_API_KEY) {
     console.warn(
@@ -38,9 +39,16 @@ export async function sendReservationPaidEmail(
     await getResend().emails.send({
       from: FROM,
       to: TO,
-      subject: `Nova reserva paga — ${reservation.customer_name}`,
+      subject: overCapacity
+        ? `[Atenção: capacidade excedida] Nova reserva paga: ${reservation.customer_name}`
+        : `Nova reserva paga: ${reservation.customer_name}`,
       html: `
         <h2>Reserva confirmada e sinal pago</h2>
+        ${
+          overCapacity
+            ? `<p style="color:#b91c1c;font-weight:bold;">Esse pagamento foi confirmado depois que o ambiente já tinha atingido a capacidade máxima para o dia. Entre em contato com o cliente pra combinar o que fazer (trocar de ambiente, de data ou estornar o sinal manualmente).</p>`
+            : ""
+        }
         <p><strong>Cliente:</strong> ${reservation.customer_name}</p>
         <p><strong>Telefone:</strong> ${reservation.customer_phone}</p>
         <p><strong>Data:</strong> ${reservation.reservation_date} às ${reservation.reservation_time}</p>

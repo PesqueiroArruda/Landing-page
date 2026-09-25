@@ -3,6 +3,7 @@ import { getSupabaseAdmin } from "@/lib/supabase";
 import { checkInfinitePayPayment } from "@/lib/infinitepay";
 import { sendReservationPaidEmail } from "@/lib/email";
 import { DEPOSIT_AMOUNT_CENTS } from "@/lib/reservations";
+import { getAvailableSpots } from "@/lib/capacity";
 
 type InfinitePayWebhookPayload = {
   invoice_slug?: string;
@@ -65,6 +66,22 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ received: true }, { status: 200 });
   }
 
+  // Checagem de segurança: como o pagamento é confirmado de forma assíncrona,
+  // pode ter surgido outra reserva paga pro mesmo dia+ambiente entre a
+  // criação desta reserva e a confirmação do pagamento. Não dá pra recusar o
+  // pagamento aqui (o dinheiro já foi cobrado e não há estorno automático),
+  // então só sinalizamos no e-mail de notificação pra ação manual.
+  let overCapacity = false;
+  try {
+    const availableSpots = await getAvailableSpots(
+      reservation.reservation_date,
+      reservation.environment
+    );
+    overCapacity = reservation.party_size > availableSpots;
+  } catch (err) {
+    console.error("Erro ao checar capacidade no webhook:", err);
+  }
+
   const { error: updateError } = await getSupabaseAdmin()
     .from("reservations")
     .update({
@@ -82,15 +99,18 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ received: true }, { status: 200 });
   }
 
-  await sendReservationPaidEmail({
-    id: reservation.id,
-    customer_name: reservation.customer_name,
-    customer_phone: reservation.customer_phone,
-    reservation_date: reservation.reservation_date,
-    reservation_time: reservation.reservation_time,
-    party_size: reservation.party_size,
-    environment: reservation.environment,
-  });
+  await sendReservationPaidEmail(
+    {
+      id: reservation.id,
+      customer_name: reservation.customer_name,
+      customer_phone: reservation.customer_phone,
+      reservation_date: reservation.reservation_date,
+      reservation_time: reservation.reservation_time,
+      party_size: reservation.party_size,
+      environment: reservation.environment,
+    },
+    overCapacity
+  );
 
   return NextResponse.json({ received: true }, { status: 200 });
 }
