@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import Button from "@/components/ui/Button";
+import Signpost from "@/components/ui/Signpost";
 
 const NAV_LINKS = [
   { href: "#sobre", label: "Sobre" },
@@ -31,7 +32,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 right-0 left-0 z-50 border-b border-gold/20 bg-ink transition-shadow duration-300 ${
+      className={`bg-woodgrain fixed top-0 right-0 left-0 z-50 border-b-2 border-gold/25 bg-ink transition-shadow duration-300 ${
         scrolled ? "shadow-lg shadow-ink-deep/40" : ""
       }`}
     >
@@ -47,20 +48,20 @@ export default function Navbar() {
               priority
             />
           </span>
-          <span className="text-lg leading-none font-semibold text-paper">
-            Pesqueiro <span className="font-script text-xl text-gold">Arruda&apos;s</span>
+          <span className="text-carved font-display text-lg leading-none font-normal tracking-wide text-paper">
+            Pesqueiro <span className="text-gold">Arruda&apos;s</span>
           </span>
         </a>
 
-        <div className="hidden items-center gap-7 md:flex">
+        <div className="hidden items-center gap-6 md:flex">
           {NAV_LINKS.map((link) => (
-            <a
+            <Signpost
               key={link.href}
               href={link.href}
-              className="text-sm font-semibold text-paper/75 transition-colors hover:text-gold"
+              className="text-sm font-semibold text-paper/75 transition-colors hover:text-paper"
             >
               {link.label}
-            </a>
+            </Signpost>
           ))}
         </div>
 
@@ -84,14 +85,14 @@ export default function Navbar() {
         <div className="border-t border-gold/20 bg-ink px-4 pb-4 md:hidden">
           <div className="flex flex-col gap-4 pt-4">
             {NAV_LINKS.map((link) => (
-              <a
+              <Signpost
                 key={link.href}
                 href={link.href}
+                className="text-sm font-semibold text-paper/80 hover:text-paper"
                 onClick={() => setOpen(false)}
-                className="text-sm font-semibold text-paper/80 hover:text-gold"
               >
                 {link.label}
-              </a>
+              </Signpost>
             ))}
             <Button href="#reserva" variant="primary" className="mt-2 w-full">
               Reservar

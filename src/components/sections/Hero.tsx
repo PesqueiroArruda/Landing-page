@@ -5,6 +5,15 @@ import Image from "next/image";
 import Button from "@/components/ui/Button";
 import SealBadge from "@/components/ui/SealBadge";
 import Waterline from "@/components/ui/Waterline";
+import Signpost from "@/components/ui/Signpost";
+import ReadoutChip from "@/components/ui/ReadoutChip";
+
+const TOTEM_LINKS = [
+  { href: "#pesca", label: "Pesca" },
+  { href: "#cardapio", label: "Restaurante" },
+  { href: "#kids", label: "Área Kids" },
+  { href: "#eventos", label: "Eventos" },
+];
 
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
@@ -25,7 +34,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-4xl leading-[1.08] font-semibold sm:text-5xl lg:text-[3.4rem]"
+            className="text-carved font-display text-4xl leading-[1.15] font-normal sm:text-5xl lg:text-[3.4rem]"
           >
             Mais que um pesqueiro,
             <br />
@@ -46,8 +55,25 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-9 flex flex-col items-center gap-4 sm:flex-row lg:items-start lg:justify-start"
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="mt-9 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 border-y border-paper/15 py-4 lg:justify-start"
+          >
+            {TOTEM_LINKS.map((link) => (
+              <Signpost
+                key={link.href}
+                href={link.href}
+                className="text-sm font-semibold text-paper/80 hover:text-paper"
+              >
+                {link.label}
+              </Signpost>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="mt-8 flex flex-col items-center gap-4 sm:flex-row lg:items-start lg:justify-start"
           >
             <Button href="#reserva" variant="primary">
               Reservar online
@@ -57,14 +83,15 @@ export default function Hero() {
             </Button>
           </motion.div>
 
-          <motion.p
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.35 }}
-            className="mt-8 text-sm text-paper/55"
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mx-auto mt-8 flex max-w-fit flex-wrap justify-center gap-3 lg:mx-0 lg:justify-start"
           >
-            Terça a domingo, 8h às 17h · (11) 91921-4978
-          </motion.p>
+            <ReadoutChip label="Horário" value="Ter a Dom, 8h às 17h" light />
+            <ReadoutChip label="Fone" value="(11) 91921-4978" light />
+          </motion.div>
         </div>
 
         <motion.div

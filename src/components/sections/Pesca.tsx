@@ -26,10 +26,10 @@ export default function Pesca() {
             <Carousel images={PESCA_IMAGES} className="aspect-4/3 w-full" />
           </Reveal>
           <Reveal className="lg:order-1">
-            <h2 className="text-3xl leading-[1.1] font-semibold text-ink sm:text-4xl">
+            <h2 className="text-carved font-display text-3xl leading-[1.15] font-normal text-ink sm:text-4xl">
               Pesca esportiva à beira do lago
             </h2>
-            <span aria-hidden className="mt-4 block h-0.75 w-14 rounded-full bg-gold" />
+            <span aria-hidden className="mt-5 block h-1.5 w-9 rounded-sm bg-gold" />
             <p className="mt-6 max-w-md text-base leading-relaxed text-bark/75 sm:text-lg">
               Pra quem curte o desafio da pescaria, com respeito ao esporte e
               ao lago. Traga sua vara, escolha seu lugar na margem e

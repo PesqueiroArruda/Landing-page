@@ -1,5 +1,4 @@
 interface SectionHeadingProps {
-  kicker?: string;
   title: string;
   description?: string;
   align?: "left" | "center";
@@ -7,7 +6,6 @@ interface SectionHeadingProps {
 }
 
 export default function SectionHeading({
-  kicker,
   title,
   description,
   align = "left",
@@ -17,18 +15,9 @@ export default function SectionHeading({
   const ruleAlignClass = align === "center" ? "mx-auto" : "";
 
   return (
-    <div className={`mb-10 max-w-xl sm:mb-14 ${alignClass}`}>
-      {kicker && (
-        <p
-          className={`mb-3 font-script text-2xl leading-none ${
-            light ? "text-gold" : "text-lake"
-          }`}
-        >
-          {kicker}
-        </p>
-      )}
+    <div className={`mb-12 max-w-xl sm:mb-16 ${alignClass}`}>
       <h2
-        className={`text-3xl leading-[1.08] font-semibold sm:text-4xl ${
+        className={`text-carved${light ? "-light" : ""} text-3xl leading-[1.15] font-normal sm:text-4xl ${
           light ? "text-paper" : "text-ink"
         }`}
       >
@@ -36,9 +25,7 @@ export default function SectionHeading({
       </h2>
       <span
         aria-hidden
-        className={`mt-4 block h-0.75 w-14 rounded-full ${ruleAlignClass} ${
-          light ? "bg-gold" : "bg-gold"
-        }`}
+        className={`mt-5 block h-1.5 w-9 rounded-sm ${ruleAlignClass} bg-gold`}
       />
       {description && (
         <p

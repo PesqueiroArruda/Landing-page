@@ -42,17 +42,19 @@ export default function Estrutura() {
           />
         </Reveal>
 
-        <RevealGrid className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-5">
-          {COMODIDADES.map(({ icon: Icon, titulo, descricao }) => (
+        <RevealGrid className="bg-woodgrain overflow-hidden rounded-sm border border-ink/10 bg-ink text-paper sm:grid sm:grid-cols-5">
+          {COMODIDADES.map(({ icon: Icon, titulo, descricao }, index) => (
             <RevealItem
               key={titulo}
-              className="border-t-2 border-gold pt-4 transition-transform duration-200 hover:-translate-y-1"
+              className={`flex items-start gap-3 border-b border-paper/10 px-5 py-6 sm:flex-col sm:items-start sm:border-r sm:border-b-0 sm:px-4 sm:py-8 ${
+                index === COMODIDADES.length - 1 ? "border-b-0 sm:border-r-0" : ""
+              }`}
             >
-              <Icon className="h-6 w-6 text-lake" strokeWidth={1.75} />
-              <h3 className="mt-3 text-base font-semibold text-ink">
-                {titulo}
-              </h3>
-              <p className="mt-1 text-sm text-bark/65">{descricao}</p>
+              <Icon className="h-5 w-5 shrink-0 text-gold" strokeWidth={1.75} />
+              <div>
+                <h3 className="text-sm font-semibold text-paper sm:mt-3">{titulo}</h3>
+                <p className="mt-1 text-xs text-paper/60">{descricao}</p>
+              </div>
             </RevealItem>
           ))}
         </RevealGrid>

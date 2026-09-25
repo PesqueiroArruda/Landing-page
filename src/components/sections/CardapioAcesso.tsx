@@ -57,7 +57,7 @@ export default function CardapioAcesso({ hiddenCount }: { hiddenCount: number })
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
           transition={{ duration: 0.15 }}
-          className="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-[15px] font-bold text-ink-deep transition-colors duration-200 hover:bg-gold-deep"
+          className="inline-flex items-center justify-center gap-2 bg-gold py-3 pr-8 pl-6 text-[15px] font-bold text-ink-deep transition-colors duration-200 [clip-path:polygon(0_0,calc(100%-14px)_0,100%_50%,calc(100%-14px)_100%,0_100%)] hover:bg-gold-deep"
         >
           <Lock size={18} />
           Ver cardápio completo
@@ -84,7 +84,7 @@ export default function CardapioAcesso({ hiddenCount }: { hiddenCount: number })
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 12, scale: 0.98 }}
               transition={{ duration: 0.18 }}
-              className="w-full max-w-sm rounded-2xl bg-paper-soft p-6 text-center shadow-xl sm:p-8"
+              className="w-full max-w-sm rounded-sm bg-paper-soft p-6 text-center shadow-xl sm:p-8"
             >
               <h3 id="cardapio-acesso-titulo" className="text-xl font-semibold text-ink">
                 Acesse nosso cardápio completo

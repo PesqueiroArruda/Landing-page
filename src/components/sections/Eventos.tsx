@@ -1,34 +1,18 @@
-import { Building2, CakeSlice } from "lucide-react";
 import Button from "@/components/ui/Button";
 import { whatsappEventosLink } from "@/lib/whatsapp";
 import Reveal from "@/components/ui/Reveal";
-import { RevealGrid, RevealItem } from "@/components/ui/RevealGroup";
-
-const OCASIOES = [
-  {
-    icon: CakeSlice,
-    titulo: "Aniversários",
-    descricao:
-      "Comemore seu aniversário com a família toda, à beira do lago.",
-  },
-  {
-    icon: Building2,
-    titulo: "Eventos corporativos",
-    descricao:
-      "A confraternização de fim de ano da sua empresa fica ainda melhor por aqui.",
-  },
-];
+import Waterline from "@/components/ui/Waterline";
 
 export default function Eventos() {
   return (
-    <section id="eventos" className="bg-lake px-4 py-20 text-paper sm:px-6 sm:py-28">
+    <section id="eventos" className="bg-woodgrain relative bg-lake px-4 pt-20 pb-28 text-paper sm:px-6 sm:pt-28 sm:pb-36">
       <div className="mx-auto max-w-5xl">
-        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
           <Reveal>
-            <h2 className="text-3xl leading-[1.1] font-semibold sm:text-4xl">
+            <h2 className="text-carved-light font-display text-3xl leading-[1.15] font-normal sm:text-4xl">
               Seu evento merece um lugar assim.
             </h2>
-            <span aria-hidden className="mt-4 block h-0.75 w-14 rounded-full bg-gold" />
+            <span aria-hidden className="mt-5 block h-1.5 w-9 rounded-sm bg-gold" />
             <p className="mt-6 max-w-sm text-base leading-relaxed text-paper/75 sm:text-lg">
               Fale com a gente e organize sua comemoração à beira do lago.
             </p>
@@ -39,17 +23,33 @@ export default function Eventos() {
             </div>
           </Reveal>
 
-          <RevealGrid className="grid gap-8 sm:grid-cols-2 sm:divide-x sm:divide-paper/15">
-            {OCASIOES.map(({ icon: Icon, titulo, descricao }, index) => (
-              <RevealItem key={titulo} className={index === 1 ? "sm:pl-8" : ""}>
-                <Icon className="h-7 w-7 text-gold" strokeWidth={1.75} />
-                <h3 className="mt-4 text-lg font-semibold">{titulo}</h3>
-                <p className="mt-2 text-sm text-paper/70">{descricao}</p>
-              </RevealItem>
-            ))}
-          </RevealGrid>
+          <Reveal className="border-l-2 border-gold/50 pl-8">
+            <p className="font-readout text-xs tracking-[0.14em] text-paper/50 uppercase">
+              Ocasiões que recebemos
+            </p>
+            <ul className="mt-4 flex flex-col gap-5">
+              <li>
+                <span className="text-lg font-semibold">Aniversários</span>
+                <p className="mt-1 text-sm text-paper/70">
+                  Comemore seu aniversário com a família toda, à beira do lago.
+                </p>
+              </li>
+              <li>
+                <span className="text-lg font-semibold">Eventos corporativos</span>
+                <p className="mt-1 text-sm text-paper/70">
+                  A confraternização de fim de ano da sua empresa fica ainda
+                  melhor por aqui.
+                </p>
+              </li>
+            </ul>
+          </Reveal>
         </div>
       </div>
+
+      <Waterline
+        animated
+        className="absolute right-0 bottom-0 left-0 h-10 w-full text-paper sm:h-14"
+      />
     </section>
   );
 }
