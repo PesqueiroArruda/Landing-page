@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Lock } from "lucide-react";
 import SubmitButton from "@/components/ui/SubmitButton";
@@ -31,16 +31,42 @@ function GoogleLogo() {
 
 export default function CardapioAcesso({ hiddenCount }: { hiddenCount: number }) {
   const [isOpen, setIsOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!isOpen) return;
 
+    const focusable = dialogRef.current?.querySelectorAll<HTMLElement>(
+      'button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    focusable?.[0]?.focus();
+
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setIsOpen(false);
+      if (event.key === "Escape") {
+        setIsOpen(false);
+        return;
+      }
+
+      if (event.key !== "Tab" || !focusable || focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     }
 
     document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      triggerRef.current?.focus();
+    };
   }, [isOpen]);
 
   return (
@@ -52,11 +78,12 @@ export default function CardapioAcesso({ hiddenCount }: { hiddenCount: number })
             : "Ainda tem mais no cardápio completo"}
         </p>
         <motion.button
+          ref={triggerRef}
           type="button"
           onClick={() => setIsOpen(true)}
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
-          transition={{ duration: 0.15 }}
+          transition={{ type: "spring", stiffness: 400, damping: 25 }}
           className="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-[15px] font-bold text-ink-deep transition-colors duration-200 hover:bg-gold-deep"
         >
           <Lock size={18} />
@@ -80,6 +107,7 @@ export default function CardapioAcesso({ hiddenCount }: { hiddenCount: number })
             }}
           >
             <motion.div
+              ref={dialogRef}
               initial={{ opacity: 0, y: 12, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 12, scale: 0.98 }}

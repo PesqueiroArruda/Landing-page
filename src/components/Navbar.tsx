@@ -29,13 +29,30 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setOpen(false);
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open]);
+
   return (
     <header
       className={`fixed top-0 right-0 left-0 z-50 border-b border-gold/20 bg-ink transition-shadow duration-300 ${
         scrolled ? "shadow-lg shadow-ink-deep/40" : ""
       }`}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+      <nav className="relative z-10 mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <a href="#top" className="flex items-center gap-2.5">
           <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-gold/70">
             <Image
@@ -81,7 +98,15 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div className="border-t border-gold/20 bg-ink px-4 pb-4 md:hidden">
+        <div
+          aria-hidden="true"
+          onClick={() => setOpen(false)}
+          className="fixed inset-0 z-0 bg-ink-deep/60 md:hidden"
+        />
+      )}
+
+      {open && (
+        <div className="relative z-10 border-t border-gold/20 bg-ink px-4 pb-4 md:hidden">
           <div className="flex flex-col gap-4 pt-4">
             {NAV_LINKS.map((link) => (
               <a

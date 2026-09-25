@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     "Pesqueiro Arruda's",
   ],
   openGraph: {
-    title: "Pesqueiro Arruda's — Mais que um pesqueiro, lugar de memórias",
+    title: "Pesqueiro Arruda's: mais que um pesqueiro, lugar de memórias",
     description:
       "Nossa família servindo a sua! Pesca, restaurante à beira do lago e lazer para a família toda, em Santana de Parnaíba, SP.",
     locale: "pt_BR",
@@ -51,6 +51,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${fraunces.variable} ${nunito.variable} ${permanentMarker.variable}`}
     >
       <body className="min-h-screen antialiased">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:bg-gold focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-ink-deep"
+        >
+          Pular para o conteúdo
+        </a>
         {children}
         <CookieConsentBanner />
         <Analytics />
