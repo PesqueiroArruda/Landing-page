@@ -117,6 +117,7 @@ export default function Reserva() {
                   name="reservationDate"
                   type="date"
                   required
+                  min={new Date().toISOString().slice(0, 10)}
                   className={`${inputClassName} max-w-full`}
                 />
                 {fieldError("reservationDate") && (

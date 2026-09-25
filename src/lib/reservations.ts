@@ -38,6 +38,11 @@ export const reservationSchema = z.object({
     .string()
     .refine((v) => !Number.isNaN(Date.parse(v)), "Data inválida")
     .refine((v) => {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      return new Date(`${v}T00:00:00`) >= today;
+    }, "Escolha uma data a partir de hoje.")
+    .refine((v) => {
       const day = new Date(`${v}T00:00:00`).getDay();
       return OPEN_WEEKDAYS.includes(day);
     }, "Fechamos às segundas-feiras, exceto feriados. Escolha outro dia."),
