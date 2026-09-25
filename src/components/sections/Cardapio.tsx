@@ -137,7 +137,7 @@ export default async function Cardapio() {
         <Reveal>
           <SectionHeading
             title="Muito além da pesca, um restaurante completo"
-            description="Pratos, porções, bebidas e sobremesas — com destaque pra essas especialidades da casa."
+            description="Pratos, porções, bebidas e sobremesas, com destaque pra essas especialidades da casa."
           />
         </Reveal>
 

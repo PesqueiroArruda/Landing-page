@@ -34,12 +34,12 @@ export default function Sobre() {
 
           <p className="mt-6 max-w-md text-base leading-relaxed text-bark/75 sm:text-lg">
             Em Santana de Parnaíba, o Pesqueiro Arruda&apos;s é o destino
-            ideal pra passar o dia com quem você ama — seja pescando na nossa
+            ideal pra passar o dia com quem você ama, seja pescando na nossa
             pesca esportiva, seja só sentando pra comer bem à beira do lago.
           </p>
           <p className="mt-4 max-w-md text-base leading-relaxed text-bark/75 sm:text-lg">
-            É a nossa família cuidando de cada detalhe, pra fazer da sua
-            visita um momento de verdade em família.
+            A ideia é simples: comida boa, sem pressa, com a família toda por
+            perto, seja a sua ou a nossa.
           </p>
 
           <RevealList className="mt-9 flex flex-col gap-4">
