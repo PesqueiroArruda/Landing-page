@@ -41,7 +41,7 @@ export default function Carousel({
 
   return (
     <div
-      className={`group relative overflow-hidden rounded-2xl ${className}`}
+      className={`group relative overflow-hidden rounded-sm border border-ink/10 ${className}`}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >

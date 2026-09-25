@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { Lock } from "lucide-react";
 import SubmitButton from "@/components/ui/SubmitButton";
 import { signInWithGoogle } from "@/app/actions/auth";
+import { easeOut } from "@/lib/motion";
 
 function GoogleLogo() {
   return (
@@ -54,10 +55,10 @@ export default function CardapioAcesso({ hiddenCount }: { hiddenCount: number })
         <motion.button
           type="button"
           onClick={() => setIsOpen(true)}
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-          transition={{ duration: 0.15 }}
-          className="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-[15px] font-bold text-ink-deep transition-colors duration-200 hover:bg-gold-deep"
+          whileHover={{ transform: "scale(1.03)" }}
+          whileTap={{ transform: "scale(0.97)" }}
+          transition={{ duration: 0.15, ease: easeOut }}
+          className="inline-flex items-center justify-center gap-2 bg-gold py-3 pr-8 pl-6 text-[15px] font-bold text-ink-deep transition-colors duration-200 [clip-path:polygon(0_0,calc(100%-14px)_0,100%_50%,calc(100%-14px)_100%,0_100%)] hover:bg-gold-deep"
         >
           <Lock size={18} />
           Ver cardápio completo
@@ -80,11 +81,11 @@ export default function CardapioAcesso({ hiddenCount }: { hiddenCount: number })
             }}
           >
             <motion.div
-              initial={{ opacity: 0, y: 12, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 12, scale: 0.98 }}
-              transition={{ duration: 0.18 }}
-              className="w-full max-w-sm rounded-2xl bg-paper-soft p-6 text-center shadow-xl sm:p-8"
+              initial={{ opacity: 0, transform: "translateY(12px) scale(0.98)" }}
+              animate={{ opacity: 1, transform: "translateY(0px) scale(1)" }}
+              exit={{ opacity: 0, transform: "translateY(12px) scale(0.98)" }}
+              transition={{ duration: 0.18, ease: easeOut }}
+              className="w-full max-w-sm rounded-sm bg-paper-soft p-6 text-center shadow-xl sm:p-8"
             >
               <h3 id="cardapio-acesso-titulo" className="text-xl font-semibold text-ink">
                 Acesse nosso cardápio completo

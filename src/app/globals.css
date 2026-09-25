@@ -11,9 +11,10 @@
   --color-paper-soft: #fbf7ec;
   --color-bark: #16130e;
 
-  --font-display: var(--font-fraunces);
+  --font-display: var(--font-rye);
   --font-body: var(--font-nunito);
   --font-script: var(--font-marker);
+  --font-readout: var(--font-fragment-mono);
 
   --animate-wave-drift: wave-drift 16s linear infinite;
 }
@@ -40,11 +41,43 @@ body {
 
 h1,
 h2,
-h3,
-h4,
-h5,
-h6 {
+h3 {
   font-family: var(--font-display);
+  letter-spacing: 0.01em;
+}
+
+/* Letras entalhadas: sombra dupla imitando corte em relevo na madeira. */
+.text-carved {
+  text-shadow:
+    0 1px 0 rgba(246, 239, 220, 0.16),
+    0 -1px 1px rgba(0, 0, 0, 0.55);
+}
+
+.text-carved-light {
+  text-shadow:
+    0 -1px 0 rgba(20, 35, 92, 0.35),
+    0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+/* Veio de madeira sutil, só textura, nunca decorativo puro: usado atrás de placas. */
+.bg-woodgrain {
+  background-image: repeating-linear-gradient(
+    92deg,
+    rgba(0, 0, 0, 0.1) 0px,
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 7px
+  );
+}
+
+.font-readout {
+  font-family: var(--font-readout);
+  font-variant-numeric: tabular-nums;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-ink-deep);
 }
 
 @media (prefers-reduced-motion: reduce) {

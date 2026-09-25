@@ -1,9 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { Menu, X } from "lucide-react";
 import Button from "@/components/ui/Button";
+import Signpost from "@/components/ui/Signpost";
+import { easeOut } from "@/lib/motion";
 
 const NAV_LINKS = [
   { href: "#sobre", label: "Sobre" },
@@ -18,20 +21,15 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { scrollY } = useScroll();
 
-  useEffect(() => {
-    function handleScroll() {
-      setScrolled(window.scrollY > 8);
-    }
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setScrolled(latest > 8);
+  });
 
   return (
     <header
-      className={`fixed top-0 right-0 left-0 z-50 border-b border-gold/20 bg-ink transition-shadow duration-300 ${
+      className={`bg-woodgrain fixed top-0 right-0 left-0 z-50 border-b-2 border-gold/25 bg-ink transition-shadow duration-300 ${
         scrolled ? "shadow-lg shadow-ink-deep/40" : ""
       }`}
     >
@@ -47,20 +45,20 @@ export default function Navbar() {
               priority
             />
           </span>
-          <span className="text-lg leading-none font-semibold text-paper">
-            Pesqueiro <span className="font-script text-xl text-gold">Arruda&apos;s</span>
+          <span className="text-carved font-display text-lg leading-none font-normal tracking-wide text-paper">
+            Pesqueiro <span className="text-gold">Arruda&apos;s</span>
           </span>
         </a>
 
-        <div className="hidden items-center gap-7 md:flex">
+        <div className="hidden items-center gap-6 md:flex">
           {NAV_LINKS.map((link) => (
-            <a
+            <Signpost
               key={link.href}
               href={link.href}
-              className="text-sm font-semibold text-paper/75 transition-colors hover:text-gold"
+              className="text-sm font-semibold text-paper/75 transition-colors hover:text-paper"
             >
               {link.label}
-            </a>
+            </Signpost>
           ))}
         </div>
 
@@ -80,25 +78,33 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {open && (
-        <div className="border-t border-gold/20 bg-ink px-4 pb-4 md:hidden">
-          <div className="flex flex-col gap-4 pt-4">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="text-sm font-semibold text-paper/80 hover:text-gold"
-              >
-                {link.label}
-              </a>
-            ))}
-            <Button href="#reserva" variant="primary" className="mt-2 w-full">
-              Reservar
-            </Button>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, transform: "translateY(-8px)" }}
+            animate={{ opacity: 1, transform: "translateY(0px)" }}
+            exit={{ opacity: 0, transform: "translateY(-8px)" }}
+            transition={{ duration: 0.2, ease: easeOut }}
+            className="border-t border-gold/20 bg-ink px-4 pb-4 md:hidden"
+          >
+            <div className="flex flex-col gap-4 pt-4">
+              {NAV_LINKS.map((link) => (
+                <Signpost
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-semibold text-paper/80 hover:text-paper"
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </Signpost>
+              ))}
+              <Button href="#reserva" variant="primary" className="mt-2 w-full">
+                Reservar
+              </Button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

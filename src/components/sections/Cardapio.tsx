@@ -141,20 +141,21 @@ export default async function Cardapio() {
           />
         </Reveal>
 
-        <div className="rounded-2xl border border-ink/10 bg-paper-soft p-3 sm:p-6">
+        <div className="rounded-sm border border-ink/10 bg-paper-soft p-3 sm:p-6">
           {categorias.map(({ categoria, items }, index) => (
             <div
               key={categoria}
               className={`mb-8 last:mb-0 ${index > 0 ? "border-t border-ink/10 pt-8" : ""}`}
             >
-              <h3 className="mb-4 text-xs font-bold tracking-widest text-gold-deep uppercase sm:text-sm">
+              <h3 className="mb-4 inline-flex items-center gap-2 border-b-2 border-gold pb-1 text-sm font-semibold text-ink">
+                <span aria-hidden className="text-gold">→</span>
                 {categoria}
               </h3>
               <RevealGrid className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
                 {items.map((row) => (
                   <RevealItem
                     key={row.key}
-                    className="flex flex-col overflow-hidden rounded-xl border border-ink/10 bg-white"
+                    className="flex flex-col overflow-hidden rounded-sm border border-ink/10 bg-white"
                   >
                     <div className="relative aspect-square w-full shrink-0">
                       {row.imageUrl ? (
@@ -175,7 +176,7 @@ export default async function Cardapio() {
                         {row.descricao}
                       </p>
                       {row.preco && (
-                        <span className="mt-auto pt-1 text-sm font-semibold text-lake">
+                        <span className="font-readout mt-auto pt-1 text-sm font-medium text-lake">
                           {row.preco}
                         </span>
                       )}
