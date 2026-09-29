@@ -56,7 +56,7 @@ export default function Reserva() {
         <Reveal className="rounded-2xl border border-ink/10 bg-paper-soft">
         <form
           action={formAction}
-          className="grid gap-4 p-6 sm:p-8"
+          className="relative grid gap-4 p-6 sm:p-8"
         >
             <div className="absolute h-0 w-0 overflow-hidden opacity-0" aria-hidden="true">
               <label htmlFor="website">Não preencha este campo</label>

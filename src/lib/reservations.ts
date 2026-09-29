@@ -24,9 +24,9 @@ export const TIME_SLOTS = Array.from(
 );
 
 export const ENVIRONMENT_OPTIONS = [
-  { value: "interno", label: "Ambiente interno" },
-  { value: "quiosque", label: "Ambiente quiosque" },
-  { value: "externo", label: "Ambiente externo" },
+  { value: "interno", label: "Ambiente Interno" },
+  { value: "quiosque", label: "Ambiente Quiosque" },
+  { value: "externo", label: "Ambiente Externo" },
 ] as const;
 
 // Capacidade máxima de pessoas por dia em cada ambiente.
