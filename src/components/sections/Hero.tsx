@@ -12,7 +12,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-ink pt-24 pb-16 text-paper sm:pt-28"
+      className="relative flex min-h-[100dvh] flex-col justify-center overflow-hidden bg-ink pt-24 pb-16 text-paper sm:pt-28"
     >
       <div
         aria-hidden

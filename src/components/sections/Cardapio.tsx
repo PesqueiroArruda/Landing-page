@@ -158,7 +158,13 @@ export default async function Cardapio() {
                   >
                     <div className="relative aspect-square w-full shrink-0">
                       {row.imageUrl ? (
-                        <Image src={row.imageUrl} alt={row.nome} fill className="object-cover" />
+                        <Image
+                          src={row.imageUrl}
+                          alt={row.nome}
+                          fill
+                          sizes="(min-width: 640px) 33vw, 50vw"
+                          className="object-cover"
+                        />
                       ) : (
                         <ImagePlaceholder
                           icon={row.icon}
