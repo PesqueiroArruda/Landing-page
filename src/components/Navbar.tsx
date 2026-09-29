@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import Button from "@/components/ui/Button";
@@ -18,6 +18,8 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     function handleScroll() {
@@ -35,14 +37,36 @@ export default function Navbar() {
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
+    const focusable = menuRef.current?.querySelectorAll<HTMLElement>(
+      'button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    focusable?.[0]?.focus();
+
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") {
+        setOpen(false);
+        return;
+      }
+
+      if (event.key !== "Tab" || !focusable || focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     }
 
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.body.style.overflow = originalOverflow;
       document.removeEventListener("keydown", handleKeyDown);
+      triggerRef.current?.focus();
     };
   }, [open]);
 
@@ -88,10 +112,12 @@ export default function Navbar() {
         </div>
 
         <button
+          ref={triggerRef}
           type="button"
           onClick={() => setOpen((prev) => !prev)}
           className="text-paper md:hidden"
           aria-label={open ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={open}
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
@@ -106,7 +132,13 @@ export default function Navbar() {
       )}
 
       {open && (
-        <div className="relative z-10 border-t border-gold/20 bg-ink px-4 pb-4 md:hidden">
+        <div
+          ref={menuRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu de navegação"
+          className="relative z-10 border-t border-gold/20 bg-ink px-4 pb-4 md:hidden"
+        >
           <div className="flex flex-col gap-4 pt-4">
             {NAV_LINKS.map((link) => (
               <a
