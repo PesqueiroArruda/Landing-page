@@ -6,6 +6,7 @@ import Cardapio from "@/components/sections/Cardapio";
 import Pesca from "@/components/sections/Pesca";
 import Estrutura from "@/components/sections/Estrutura";
 import AreaKids from "@/components/sections/AreaKids";
+import ProximosEventos from "@/components/sections/ProximosEventos";
 import Eventos from "@/components/sections/Eventos";
 import Reserva from "@/components/sections/Reserva";
 import Contato from "@/components/sections/Contato";
@@ -21,6 +22,7 @@ export default function Home() {
         <Pesca />
         <Estrutura />
         <AreaKids />
+        <ProximosEventos />
         <Eventos />
         <Reserva />
         <Contato />
