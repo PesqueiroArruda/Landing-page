@@ -7,6 +7,7 @@
   --color-lake-deep: #142925;
   --color-gold: #e8a722;
   --color-gold-deep: #c1860f;
+  --color-gold-text: #8a5f06;
   --color-paper: #f6efdc;
   --color-paper-soft: #fbf7ec;
   --color-bark: #16130e;
@@ -16,6 +17,18 @@
   --font-script: var(--font-marker);
 
   --animate-wave-drift: wave-drift 16s linear infinite;
+  --animate-rise-in: rise-in 0.6s ease-out both;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @keyframes wave-drift {

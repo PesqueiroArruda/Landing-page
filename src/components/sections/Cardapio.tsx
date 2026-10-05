@@ -147,7 +147,7 @@ export default async function Cardapio() {
               key={categoria}
               className={`mb-8 last:mb-0 ${index > 0 ? "border-t border-ink/10 pt-8" : ""}`}
             >
-              <h3 className="mb-4 text-xs font-bold tracking-widest text-gold-deep uppercase sm:text-sm">
+              <h3 className="mb-4 text-xs font-bold tracking-widest text-gold-text uppercase sm:text-sm">
                 {categoria}
               </h3>
               <RevealGrid className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">

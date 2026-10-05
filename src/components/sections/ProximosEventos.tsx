@@ -42,7 +42,7 @@ export default function ProximosEventos() {
                       <p className="font-display text-4xl leading-none font-semibold text-ink">
                         {data.dia}
                       </p>
-                      <p className="mt-1 text-xs font-bold tracking-widest text-gold-deep uppercase">
+                      <p className="mt-1 text-xs font-bold tracking-widest text-gold-text uppercase">
                         {data.mes}
                       </p>
                     </div>

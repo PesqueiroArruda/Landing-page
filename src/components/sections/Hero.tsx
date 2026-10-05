@@ -21,33 +21,26 @@ export default function Hero() {
 
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-16 px-4 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
         <div className="text-center lg:text-left">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl leading-[1.08] font-semibold sm:text-5xl lg:text-[3.4rem]"
+          <h1
+            className="animate-rise-in text-4xl leading-[1.08] font-semibold sm:text-5xl lg:text-[3.4rem]"
           >
             Mais que um pesqueiro,
             <br />
             lugar de memórias.
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mx-auto mt-6 max-w-md text-lg text-paper/80 lg:mx-0"
+          <p
+            style={{ animationDelay: "0.1s" }}
+            className="animate-rise-in mx-auto mt-6 max-w-md text-lg text-paper/80 lg:mx-0"
           >
             Pesca esportiva, tilápia na chapa feita na hora e uma tarde
             inteira à beira do lago, em Santana de Parnaíba. A família
             Arruda&apos;s cuidando de cada detalhe da sua mesa.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-9 flex flex-col items-center gap-4 sm:flex-row lg:items-start lg:justify-start"
+          <div
+            style={{ animationDelay: "0.2s" }}
+            className="animate-rise-in mt-9 flex flex-col items-center gap-4 sm:flex-row lg:items-start lg:justify-start"
           >
             <Button href="#reserva" variant="primary">
               Reservar online
@@ -55,16 +48,14 @@ export default function Hero() {
             <Button href="#cardapio" variant="outline">
               Ver cardápio
             </Button>
-          </motion.div>
+          </div>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.35 }}
-            className="mt-8 text-sm text-paper/55"
+          <p
+            style={{ animationDelay: "0.35s" }}
+            className="animate-rise-in mt-8 text-sm text-paper/70"
           >
             Terça a domingo, 8h às 17h · (11) 91921-4978
-          </motion.p>
+          </p>
         </div>
 
         <motion.div

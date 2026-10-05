@@ -31,11 +31,11 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
         </div>
       </header>
 
-      <main className="flex-1 px-4 py-14 sm:px-6 sm:py-20">
+      <main id="main-content" tabIndex={-1} className="flex-1 px-4 py-14 focus:outline-none sm:px-6 sm:py-20">
         <div className="mx-auto max-w-3xl">{children}</div>
       </main>
 
-      <footer className="border-t border-ink/10 px-4 py-8 text-center text-xs text-bark/50 sm:px-6">
+      <footer className="border-t border-ink/10 px-4 py-8 text-center text-xs text-bark/70 sm:px-6">
         © {year} Pesqueiro Arruda&apos;s. Todos os direitos reservados.
       </footer>
     </div>

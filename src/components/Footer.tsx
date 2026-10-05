@@ -83,7 +83,7 @@ export default function Footer() {
         </div>
       </Reveal>
 
-      <div className="mx-auto mt-10 flex max-w-6xl flex-col items-center gap-3 border-t border-paper/10 pt-6 text-center text-xs text-paper/50 sm:flex-row sm:justify-between">
+      <div className="mx-auto mt-10 flex max-w-6xl flex-col items-center gap-3 border-t border-paper/10 pt-6 text-center text-xs text-paper/70 sm:flex-row sm:justify-between">
         <span>© {year} Pesqueiro Arruda&apos;s. Todos os direitos reservados.</span>
         <span className="flex gap-4">
           <a href="/privacidade" className="hover:text-gold">
