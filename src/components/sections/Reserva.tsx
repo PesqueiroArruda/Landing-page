@@ -18,7 +18,7 @@ import {
 const initialState: CreateReservationState = { status: "idle" };
 
 const inputClassName =
-  "w-full rounded-xl border border-ink/15 bg-white px-4 py-2.5 text-sm text-ink placeholder:text-bark/35 focus:border-lake focus:outline-none focus:ring-2 focus:ring-lake/25 sm:text-base";
+  "w-full rounded-xl border border-ink/15 bg-white px-4 py-2.5 text-base text-ink placeholder:text-bark/35 focus:border-lake focus:outline-none focus:ring-2 focus:ring-lake/25";
 
 const labelClassName = "mb-1.5 block text-sm font-semibold text-ink";
 

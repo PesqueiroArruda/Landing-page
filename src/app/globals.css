@@ -46,6 +46,15 @@ html {
      pra navegacao sem JS (ex: hash direto na URL). */
   scroll-behavior: auto;
   scroll-padding-top: 88px;
+  /* Remove o zoom por toque duplo sem bloquear o pinca-zoom (acessibilidade). */
+  touch-action: manipulation;
+}
+
+/* iOS da zoom automatico em campos com fonte menor que 16px. */
+input,
+textarea,
+select {
+  font-size: 16px;
 }
 
 body {
