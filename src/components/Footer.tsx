@@ -8,7 +8,6 @@ const NAV_LINKS = [
   { href: "#cardapio", label: "Cardápio" },
   { href: "#pesca", label: "Pesca" },
   { href: "#estrutura", label: "Estrutura" },
-  { href: "#kids", label: "Kids" },
   { href: "#agenda", label: "Agenda" },
   { href: "#eventos", label: "Eventos" },
   { href: "#reserva", label: "Reservar" },

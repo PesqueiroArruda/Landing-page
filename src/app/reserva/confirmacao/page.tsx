@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { CheckCircle2, Clock, XCircle, HelpCircle } from "lucide-react";
 import { getSupabaseAdmin } from "@/lib/supabase";
 import { whatsappReservaLink } from "@/lib/whatsapp";
@@ -28,12 +27,12 @@ function StatusCard({
         <h1 className="text-2xl font-semibold text-ink">{title}</h1>
         <p className="text-sm text-bark/70 sm:text-base">{description}</p>
         <div className="mt-4 flex flex-col gap-2 sm:flex-row">
-          <Link
+          <a
             href="/"
             className="rounded-full border-2 border-ink/20 px-5 py-2.5 text-sm font-semibold text-ink hover:bg-ink/5"
           >
             Voltar ao site
-          </Link>
+          </a>
           <a
             href={whatsappReservaLink}
             className="rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-ink-deep hover:bg-gold-deep"

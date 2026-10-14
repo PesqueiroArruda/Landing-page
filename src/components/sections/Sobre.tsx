@@ -1,69 +1,57 @@
-import { Fish, HeartHandshake, Sun, UtensilsCrossed } from "lucide-react";
-import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
-import Reveal from "@/components/ui/Reveal";
-import { RevealList, RevealListItem } from "@/components/ui/RevealGroup";
+import Image from "next/image";
 
 const DIFERENCIAIS = [
-  {
-    icon: Fish,
-    text: "Prato preparado na hora, com a receita da casa",
-  },
-  {
-    icon: HeartHandshake,
-    text: "A nossa própria família trabalha no salão, com a mesma tradição de sempre",
-  },
-  {
-    icon: Sun,
-    text: "Estrutura completa pra passar o dia, não é só pescar e ir embora",
-  },
-  {
-    icon: UtensilsCrossed,
-    text: "Cardápio que vai além do peixe: pratos, porções, sobremesas e doses",
-  },
+  "Prato preparado na hora, com a receita da casa",
+  "A nossa própria família trabalha no salão, com a mesma tradição de sempre",
+  "Estrutura completa pra passar o dia, não é só pescar e ir embora",
+  "Cardápio que vai além do peixe: pratos, porções, sobremesas e doses",
 ];
 
+/** Ato 3 (flow + reveal): quem somos, com uma foto real da margem. */
 export default function Sobre() {
   return (
-    <section id="sobre" className="bg-paper-soft px-4 py-20 sm:px-6 sm:py-28">
-      <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-20">
-        <Reveal>
-          <h2 className="text-3xl leading-[1.1] font-semibold text-ink sm:text-4xl">
+    <section
+      id="sobre"
+      data-sc-act="flow"
+      className="theme-paper sc-section"
+      style={{ paddingTop: "clamp(3rem, 6vw, 6rem)" }}
+    >
+      <div className="sc-wrap grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+        <div className="sc-stack" data-sc-in data-sc-stagger="70">
+          <h2 className="act-title text-[clamp(2.2rem,1.4rem+3vw,4.2rem)] text-(--sc-ink)">
             Nossa família servindo a sua
           </h2>
-          <span aria-hidden className="mt-4 block h-0.75 w-14 rounded-full bg-gold" />
-
-          <p className="mt-6 max-w-md text-base leading-relaxed text-bark/75 sm:text-lg">
-            Em Santana de Parnaíba, o Pesqueiro Arruda&apos;s é o destino
-            ideal pra passar o dia com quem você ama, seja pescando na nossa
-            pesca esportiva, seja só sentando pra comer bem à beira do lago.
+          <p className="max-w-[46ch] text-lg leading-relaxed text-(--sc-ink-soft)">
+            Em Santana de Parnaíba, o Pesqueiro Arruda&apos;s é o lugar pra
+            passar o dia com quem você ama, seja pescando na nossa pesca
+            esportiva, seja só sentando pra comer bem à beira do lago.
           </p>
-          <p className="mt-4 max-w-md text-base leading-relaxed text-bark/75 sm:text-lg">
+          <p className="max-w-[46ch] text-lg leading-relaxed text-(--sc-ink-soft)">
             A ideia é simples: comida boa, sem pressa, com a família toda por
             perto, seja a sua ou a nossa.
           </p>
-
-          <RevealList className="mt-9 flex flex-col gap-4">
-            {DIFERENCIAIS.map(({ icon: Icon, text }) => (
-              <RevealListItem key={text} className="flex items-start gap-3">
-                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-lake/12 text-lake">
-                  <Icon className="h-4 w-4" />
-                </span>
-                <span className="text-sm text-bark/80 sm:text-base">
-                  {text}
-                </span>
-              </RevealListItem>
+          <ul className="mt-8 divide-y divide-(--sc-hairline) border-y border-(--sc-hairline)">
+            {DIFERENCIAIS.map((text) => (
+              <li key={text} className="py-3.5 text-base text-(--sc-ink)">
+                {text}
+              </li>
             ))}
-          </RevealList>
-        </Reveal>
+          </ul>
+        </div>
 
-        <Reveal>
-          <ImagePlaceholder
-            icon={Fish}
-            label="Nossa família à beira do lago"
-            imagePath="/images/sobre-familia.jpg"
-            className="aspect-4/3 w-full rounded-2xl"
+        <figure
+          data-sc-reveal="left"
+          data-sc-reveal-at="0.12 0.5"
+          className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-[var(--sc-r-md)] shadow-(--sc-e3) lg:max-w-none"
+        >
+          <Image
+            src="/images/pesca-5.jpg"
+            alt="Família pescando junta na margem do lago do Pesqueiro Arruda's"
+            fill
+            sizes="(min-width: 1024px) 42vw, 90vw"
+            className="object-cover object-[50%_40%]"
           />
-        </Reveal>
+        </figure>
       </div>
     </section>
   );

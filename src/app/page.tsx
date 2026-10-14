@@ -4,8 +4,11 @@ import Hero from "@/components/sections/Hero";
 import Sobre from "@/components/sections/Sobre";
 import Cardapio from "@/components/sections/Cardapio";
 import Pesca from "@/components/sections/Pesca";
-import Estrutura from "@/components/sections/Estrutura";
-import AreaKids from "@/components/sections/AreaKids";
+import Chegada from "@/components/sections/Chegada";
+import LagoMesa from "@/components/sections/LagoMesa";
+import DiaTodo from "@/components/sections/DiaTodo";
+import ScrollMount from "@/components/ScrollMount";
+import FishingLine from "@/components/FishingLine";
 import ProximosEventos from "@/components/sections/ProximosEventos";
 import Eventos from "@/components/sections/Eventos";
 import Reserva from "@/components/sections/Reserva";
@@ -57,19 +60,22 @@ export default function Home() {
         }}
       />
       <Navbar />
+      <FishingLine />
       <main id="main-content" tabIndex={-1} className="focus:outline-none">
         <Hero />
+        <Chegada />
         <Sobre />
-        <Cardapio />
         <Pesca />
-        <Estrutura />
-        <AreaKids />
+        <LagoMesa />
+        <Cardapio />
+        <DiaTodo />
         <ProximosEventos />
         <Eventos />
-        <Reserva />
         <Contato />
+        <Reserva />
       </main>
       <Footer />
+      <ScrollMount />
     </>
   );
 }

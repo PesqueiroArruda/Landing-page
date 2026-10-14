@@ -10,7 +10,6 @@ const NAV_LINKS = [
   { href: "#cardapio", label: "Cardápio" },
   { href: "#pesca", label: "Pesca" },
   { href: "#estrutura", label: "Estrutura" },
-  { href: "#kids", label: "Kids" },
   { href: "#agenda", label: "Agenda" },
   { href: "#eventos", label: "Eventos" },
   { href: "#contato", label: "Contato" },
@@ -73,8 +72,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 right-0 left-0 z-50 border-b border-gold/20 bg-ink transition-shadow duration-300 ${
-        scrolled ? "shadow-lg shadow-ink-deep/40" : ""
+      className={`fixed top-0 right-0 left-0 z-50 border-b transition-[background-color,box-shadow,border-color] duration-300 ${
+        scrolled
+          ? "border-gold/20 bg-ink shadow-lg shadow-ink-deep/40"
+          : "border-transparent bg-linear-to-b from-ink-deep/75 to-transparent"
       }`}
     >
       <nav className="relative z-10 mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
@@ -108,7 +109,7 @@ export default function Navbar() {
 
         <div className="hidden md:block">
           <Button href="#reserva" variant="primary" className="px-5 py-2 text-sm">
-            Reservar
+            Reservar minha mesa
           </Button>
         </div>
 
@@ -152,7 +153,7 @@ export default function Navbar() {
               </a>
             ))}
             <Button href="#reserva" variant="primary" className="mt-2 w-full">
-              Reservar
+              Reservar minha mesa
             </Button>
           </div>
         </div>

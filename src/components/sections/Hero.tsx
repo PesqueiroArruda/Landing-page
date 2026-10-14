@@ -1,99 +1,66 @@
-"use client";
-
-import { motion, useReducedMotion } from "motion/react";
-import Image from "next/image";
-import Button from "@/components/ui/Button";
-import SealBadge from "@/components/ui/SealBadge";
-import Waterline from "@/components/ui/Waterline";
-
+/**
+ * Ato 1 (scrub): o lago ao amanhecer. A camera entra devagar enquanto a mao
+ * do visitante rola. O titulo ja esta na tela quando a pagina carrega (greet).
+ */
 export default function Hero() {
-  const shouldReduceMotion = useReducedMotion();
-
   return (
     <section
       id="top"
-      className="relative flex min-h-[100dvh] flex-col justify-center overflow-hidden bg-ink pt-24 pb-16 text-paper sm:pt-28"
+      data-sc-act="scrub"
+      data-sc-span="2.2"
+      data-sc-dwell="0.35"
+      aria-label="Pesqueiro Arruda's"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(232,167,34,0.14),transparent_55%)]"
-      />
+      <div data-sc-stage>
+        <picture>
+          <source media="(max-width: 700px)" srcSet="/media/hero-poster-m.webp" />
+          <img
+            className="sc-stage__poster"
+            src="/media/hero-poster.webp"
+            alt="Lago do pesqueiro ao amanhecer, com névoa sobre a água e um deck de madeira na margem"
+            width={1920}
+            height={1080}
+            fetchPriority="high"
+          />
+        </picture>
+        <video
+          data-sc-scrub
+          data-sc-src="/media/hero.mp4"
+          data-sc-src-mobile="/media/hero-m.mp4"
+          muted
+          playsInline
+          aria-hidden="true"
+        />
+        <div className="scrim-lead-left" aria-hidden="true" />
 
-      <div className="relative mx-auto grid w-full max-w-6xl items-center gap-16 px-4 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
-        <div className="text-center lg:text-left">
+        <div className="sc-copy hero-copy">
           <h1
-            className="animate-rise-in text-4xl leading-[1.08] font-semibold sm:text-5xl lg:text-[3.4rem]"
+            className="act-title hero-h1"
+            data-sc-cue="0 0.82 0"
+            data-sc-kinetic="lines"
           >
-            Mais que um pesqueiro,
-            <br />
-            lugar de memórias.
+            Mais que um pesqueiro, lugar de memórias.
           </h1>
-
-          <p
-            style={{ animationDelay: "0.1s" }}
-            className="animate-rise-in mx-auto mt-6 max-w-md text-lg text-paper/80 lg:mx-0"
-          >
-            Pesca esportiva, tilápia na chapa feita na hora e uma tarde
-            inteira à beira do lago, em Santana de Parnaíba. A família
-            Arruda&apos;s cuidando de cada detalhe da sua mesa.
+          <p className="act-small mt-5" data-sc-cue="0 0.82 0">
+            Pesca esportiva e tilápia na chapa à beira do lago, em Santana de
+            Parnaíba.
           </p>
-
           <div
-            style={{ animationDelay: "0.2s" }}
-            className="animate-rise-in mt-9 flex flex-col items-center gap-4 sm:flex-row lg:items-start lg:justify-start"
+            className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2"
+            data-sc-cue="0 0.82 0"
           >
-            <Button href="#reserva" variant="primary">
-              Reservar online
-            </Button>
-            <Button href="#cardapio" variant="outline">
-              Ver cardápio
-            </Button>
+            <a href="#reserva" className="cta-gold">
+              Reservar minha mesa
+            </a>
+            <a href="#cardapio" className="cta-ghost">
+              Ver o cardápio
+            </a>
           </div>
-
-          <p
-            style={{ animationDelay: "0.35s" }}
-            className="animate-rise-in mt-8 text-sm text-paper/70"
-          >
-            Terça a domingo, 8h às 17h · (11) 91921-4978
+          <p className="mt-6 text-sm text-(--sc-ink-soft)" data-sc-cue="0 0.82 0">
+            Terça a domingo, das 8h às 17h
           </p>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.15 }}
-          className="relative mx-auto h-64 w-64 sm:h-72 sm:w-72"
-        >
-          <motion.div
-            animate={shouldReduceMotion ? undefined : { y: [0, -10, 0] }}
-            transition={
-              shouldReduceMotion
-                ? undefined
-                : { duration: 4.5, repeat: Infinity, ease: "easeInOut" }
-            }
-            className="relative flex h-full w-full items-center justify-center"
-          >
-            <div className="absolute inset-0 text-gold/75">
-              <SealBadge text="TRADIÇÃO DE FAMÍLIA" />
-            </div>
-            <span className="relative h-40 w-40 overflow-hidden rounded-full shadow-[0_0_0_6px_rgba(246,239,220,0.06)] ring-4 ring-gold/80 sm:h-44 sm:w-44">
-              <Image
-                src="/logo.jpeg"
-                alt="Logo Pesqueiro Arruda's"
-                fill
-                sizes="176px"
-                className="object-cover object-[50%_38%]"
-                priority
-              />
-            </span>
-          </motion.div>
-        </motion.div>
       </div>
-
-      <Waterline
-        animated={!shouldReduceMotion}
-        className="absolute right-0 bottom-0 left-0 h-10 w-full text-paper sm:h-14"
-      />
     </section>
   );
 }

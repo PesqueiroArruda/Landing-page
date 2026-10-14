@@ -1,6 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 
+/* Links para "/" sao <a> comuns de proposito: o motor scrollcraft da home nao tem
+   destroy, entao voltar para a home precisa de carregamento completo. */
 export default function LegalLayout({ children }: { children: React.ReactNode }) {
   const year = new Date().getFullYear();
 
@@ -8,7 +9,7 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
     <div className="flex min-h-screen flex-col bg-paper">
       <header className="border-b border-gold/20 bg-ink px-4 py-4 sm:px-6">
         <div className="mx-auto flex max-w-3xl items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5">
+          <a href="/" className="flex items-center gap-2.5">
             <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-gold/70">
               <Image
                 src="/logo.jpeg"
@@ -21,13 +22,13 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
             <span className="text-lg leading-none font-semibold text-paper">
               Pesqueiro <span className="font-script text-xl text-gold">Arruda&apos;s</span>
             </span>
-          </Link>
-          <Link
+          </a>
+          <a
             href="/"
             className="text-sm font-semibold text-paper/75 transition-colors hover:text-gold"
           >
             Voltar ao site
-          </Link>
+          </a>
         </div>
       </header>
 

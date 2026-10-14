@@ -1,4 +1,6 @@
+@layer theme, base, sc, components, utilities;
 @import "tailwindcss";
+@import "./scrollcraft.css" layer(sc);
 
 @theme inline {
   --color-ink: #14235c;
@@ -41,10 +43,9 @@
 }
 
 html {
-  /* Scroll suave dos links de ancora fica por conta do Lenis
-     (SmoothScroll.tsx); aqui fica so o offset e o fallback instantaneo
-     pra navegacao sem JS (ex: hash direto na URL). */
-  scroll-behavior: auto;
+  /* Scroll nativo: o motor scrollcraft (public/sc/scrollcraft.js) conduz os atos
+     fixados lendo a posicao real da pagina, entao sem Lenis. */
+  scroll-behavior: smooth;
   scroll-padding-top: 88px;
   /* Remove o zoom por toque duplo sem bloquear o pinca-zoom (acessibilidade). */
   touch-action: manipulation;
@@ -82,3 +83,178 @@ h6 {
     scroll-behavior: auto !important;
   }
 }
+
+/* ==========================================================================
+   Scrollar: tokens da marca sobre o motor (public/sc/scrollcraft.js)
+   Os atos escuros usam estes tokens; secoes de papel redefinem tinta e cor.
+   ========================================================================== */
+:root {
+  --sc-canvas: #0d1938;
+  --sc-surface: #14235c;
+  --sc-ink: #f6efdc;
+  --sc-ink-soft: #d9d1ba;
+  --sc-accent: #e8a722;
+  --sc-accent-ink: #0d1938;
+  --sc-font-display: var(--font-fraunces), Georgia, serif;
+  --sc-font-text: var(--font-nunito), system-ui, sans-serif;
+  --sc-track-tight: -0.02em;
+  --sc-track-snug: -0.01em;
+  --sc-shadow-color: 225 55% 8%;
+}
+
+/* Sem JS (ou antes de o motor montar) o conteudo precisa estar legivel. */
+html:not(.sc-ready) [data-sc-cue] { opacity: 1; }
+html:not(.sc-ready) [data-sc-reveal] { clip-path: none; }
+html:not(.sc-ready) [data-sc-act="pan"] [data-sc-stage] { overflow-x: auto; }
+html:not(.sc-ready) [data-sc-in],
+html:not(.sc-ready) [data-sc-stagger] > * { opacity: 1; transform: none; }
+
+.theme-paper {
+  --sc-ink: #14235c;
+  --sc-ink-soft: #3d4663;
+  --sc-hairline: rgba(20, 35, 92, 0.16);
+  background: var(--color-paper);
+  color: var(--sc-ink);
+}
+.theme-paper-soft { background: var(--color-paper-soft); }
+.theme-lake {
+  --sc-canvas: #142925;
+  --sc-ink: #f6efdc;
+  background: var(--color-lake);
+  color: var(--sc-ink);
+}
+.theme-ink { background: var(--color-ink-deep); color: var(--sc-ink); }
+
+/* Tipografia dos atos */
+.act-title {
+  font-family: var(--sc-font-display);
+  font-weight: 600;
+  font-variation-settings: "SOFT" 60, "WONK" 0;
+  line-height: 1.02;
+  letter-spacing: var(--sc-track-tight);
+  text-wrap: balance;
+  margin: 0;
+}
+.act-lede {
+  font-family: var(--sc-font-display);
+  font-weight: 500;
+  font-size: clamp(1.7rem, 1.1rem + 2.8vw, 3.4rem);
+  line-height: 1.12;
+  letter-spacing: var(--sc-track-snug);
+  max-width: 22ch;
+  text-wrap: balance;
+  margin: 0;
+}
+.act-small {
+  font-size: var(--sc-t-lg);
+  line-height: 1.5;
+  max-width: 34ch;
+  text-wrap: pretty;
+  margin: 0;
+  color: var(--sc-ink-soft);
+}
+
+/* Scrim so onde ha texto (irmao do texto, nunca filho) */
+.scrim-lead-left {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(13,25,56,0.96) 0%, rgba(13,25,56,0.84) 30%, rgba(13,25,56,0.55) 60%, rgba(13,25,56,0) 84%),
+    linear-gradient(90deg, rgba(13,25,56,0.6) 0%, rgba(13,25,56,0) 58%);
+}
+.dim-image img { filter: brightness(0.5) saturate(0.95); }
+@media (max-width: 860px) {
+  .scrim-lead-left {
+    background: linear-gradient(0deg,
+      rgba(13,25,56,0.92) 0%, rgba(13,25,56,0.62) 36%, rgba(13,25,56,0) 64%);
+  }
+}
+
+/* ---- Hero ---- */
+.hero-copy { left: var(--sc-gutter); bottom: clamp(3.5rem, 13vh, 9rem); max-width: min(44rem, 88vw); }
+.hero-h1 { font-size: clamp(2.5rem, 1.2rem + 5.6vw, 6.2rem); }
+@media (max-width: 700px) { .hero-h1 { font-size: clamp(2.35rem, 11vw, 3.2rem); } }
+.cta-gold {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  padding: .95rem 1.7rem; border-radius: 999px;
+  background: var(--color-gold); color: var(--color-ink-deep);
+  font-weight: 800; font-size: 1.02rem; text-decoration: none;
+  transition: background-color 160ms var(--sc-ease-out);
+  box-shadow: 0 10px 28px -10px rgba(232,167,34,.55);
+}
+.cta-gold:hover { background: #f2b83a; }
+.cta-gold:active { translate: 0 1px; }
+.cta-ghost {
+  display: inline-flex; align-items: center; padding: .95rem .4rem; font-weight: 700;
+  color: var(--sc-ink); text-decoration: underline; text-decoration-color: rgba(246,239,220,.4);
+  text-underline-offset: .3em; transition: text-decoration-color 160ms;
+}
+.cta-ghost:hover { text-decoration-color: var(--color-gold); }
+
+/* ---- Pin tipografico sobre a agua ---- */
+.arrival-text { position: absolute; z-index: 20; inset-inline: var(--sc-gutter); }
+.arrival-text--a { top: 22%; }
+.arrival-text--b { top: 40%; text-align: right; inset-inline: auto var(--sc-gutter); }
+.arrival-text--c { top: 30%; }
+.arrival-text--d { bottom: 18%; }
+@media (max-width: 700px) {
+  .arrival-text--a, .arrival-text--b, .arrival-text--c { top: 26%; text-align: left; inset-inline: var(--sc-gutter); }
+  .arrival-text--d { bottom: 22%; }
+}
+.mist {
+  position: absolute; left: -10%; right: -10%; z-index: 2; pointer-events: none;
+  height: 38%; bottom: 8%;
+  background: radial-gradient(60% 100% at 50% 100%, rgba(246,239,220,.20), rgba(246,239,220,0) 70%);
+  filter: blur(14px);
+}
+.mist--2 { bottom: 24%; height: 30%; opacity: .7; }
+
+/* ---- Trilho da pesca ---- */
+.rail-photos { align-items: center; gap: clamp(1rem, 2.4vw, 2.5rem); padding-inline: var(--sc-gutter); height: 100%; }
+.rail-lead { flex: 0 0 min(26rem, 78vw); }
+.rail-photo { flex: 0 0 auto; height: min(68svh, 34rem); aspect-ratio: 740 / 1600; }
+.rail-photo:nth-child(odd) { translate: 0 -4svh; }
+.rail-photo:nth-child(even) { translate: 0 5svh; }
+.rail-photo > div { position: relative; width: 100%; height: 100%; border-radius: var(--sc-r-md); overflow: hidden; box-shadow: var(--sc-e3), var(--sc-edge); }
+.rail-note { flex: 0 0 min(24rem, 78vw); }
+
+/* ---- Pico: do lago a mesa ---- */
+.peak-layer { position: absolute; inset: -6%; }
+.peak-layer img { width: 100%; height: 100%; object-fit: cover; }
+.peak-copy { position: absolute; z-index: 20; left: var(--sc-gutter); right: var(--sc-gutter); bottom: clamp(3rem, 12vh, 8rem); }
+
+/* ---- Linha de pesca (assinatura) ---- */
+.fishing-line { position: fixed; inset: 0 auto 0 0; width: 0; z-index: 40; pointer-events: none; }
+.fishing-line__thread {
+  position: absolute; left: clamp(7px, 1.4vw, 22px); top: 0; width: 1px; height: 100svh;
+  background: linear-gradient(to bottom, rgba(232,167,34,0), rgba(232,167,34,.85) 30%);
+  transform-origin: top; transform: scaleY(var(--lp, 0));
+}
+.fishing-line__float {
+  position: absolute; left: clamp(7px, 1.4vw, 22px); top: 0; width: 0; height: 0;
+  transform: translate3d(0, calc(var(--lp, 0) * (100svh - 5.5rem)), 0);
+}
+.fishing-line__bob {
+  position: absolute; left: -6px; top: 0; width: 12px; height: 26px;
+  animation: bob 3.4s ease-in-out infinite;
+}
+.fishing-line__bob::before, .fishing-line__bob::after { content: ""; position: absolute; left: 0; right: 0; }
+.fishing-line__bob::before { top: 0; height: 13px; border-radius: 12px 12px 4px 4px; background: #e8a722; }
+.fishing-line__bob::after { top: 13px; height: 13px; border-radius: 4px 4px 12px 12px; background: #f6efdc; box-shadow: inset 0 0 0 1px rgba(20,35,92,.25); }
+.fishing-line[data-bite="true"] .fishing-line__bob { animation: bite .9s var(--sc-ease-out) 1; }
+@keyframes bob { 0%,100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(5px) rotate(3deg); } }
+@keyframes bite {
+  0% { transform: translateY(0); } 18% { transform: translateY(26px) rotate(-8deg); }
+  36% { transform: translateY(-6px) rotate(6deg); } 60% { transform: translateY(14px); } 100% { transform: translateY(0); }
+}
+@media (max-width: 700px) { .fishing-line__bob { scale: .8; } }
+@media (prefers-reduced-motion: reduce) { .fishing-line { display: none; } }
+
+/* ---- O dia todo ---- */
+.day-copy { position: absolute; z-index: 20; left: var(--sc-gutter); top: 50%; translate: 0 -50%; width: min(26rem, 84vw); }
+.day-fig { position: absolute; inset: 0; z-index: 0; }
+.day-fig img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Tinta clara dentro dos palcos escuros (o body herda a cor de texto do papel). */
+[data-sc-stage] { color: var(--sc-ink); }
+.theme-paper [data-sc-stage] { color: var(--sc-ink); }
+@media (max-width: 700px) { .peak-copy { bottom: max(6rem, 20svh); } }
