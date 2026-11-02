@@ -7,8 +7,8 @@ import { RevealGrid, RevealItem } from "@/components/ui/RevealGroup";
 import { formatarData, getProximosEventos } from "@/lib/eventos";
 import { whatsappAgendaLink, whatsappEventoLink } from "@/lib/whatsapp";
 
-export default function ProximosEventos() {
-  const eventos = getProximosEventos();
+export default async function ProximosEventos() {
+  const eventos = await getProximosEventos();
 
   return (
     <section id="agenda" className="bg-paper px-4 py-20 sm:px-6 sm:py-28">
@@ -17,7 +17,7 @@ export default function ProximosEventos() {
           <SectionHeading
             kicker="Agenda"
             title="Próximos shows no Arruda's"
-            description="Música ao vivo aos domingos, a partir das 12h30. Reserve sua mesa pelo WhatsApp."
+            description="Música ao vivo e eventos no Arruda's. Reserve sua mesa pelo WhatsApp."
           />
         </Reveal>
 
@@ -28,13 +28,25 @@ export default function ProximosEventos() {
               return (
                 <RevealItem key={evento.id} className="flex flex-col">
                   <div className="relative aspect-[9/16] overflow-hidden rounded-xl border border-ink/10 bg-ink-deep">
-                    <Image
-                      src={evento.cartaz.src}
-                      alt={evento.cartaz.alt}
-                      fill
-                      sizes="(min-width: 1024px) 384px, (min-width: 640px) 45vw, 92vw"
-                      className="object-cover"
-                    />
+                    {evento.cartaz ? (
+                      <Image
+                        src={evento.cartaz}
+                        alt={`Cartaz de ${evento.titulo} no Arruda's, ${data.diaSemana}, ${data.completa}${evento.horario ? `, a partir das ${evento.horario}` : ""}`}
+                        fill
+                        sizes="(min-width: 1024px) 384px, (min-width: 640px) 45vw, 92vw"
+                        className="object-cover"
+                      />
+                    ) : (
+                      <div className="flex h-full flex-col items-center justify-center gap-3 p-6 text-center">
+                        <CalendarDays
+                          className="h-10 w-10 text-gold"
+                          aria-hidden
+                        />
+                        <p className="font-display text-2xl font-semibold text-paper">
+                          {evento.titulo}
+                        </p>
+                      </div>
+                    )}
                   </div>
 
                   <div className="mt-5 flex items-start gap-4">
@@ -48,7 +60,7 @@ export default function ProximosEventos() {
                     </div>
                     <div className="min-w-0">
                       <h3 className="text-xl font-semibold text-ink">
-                        {evento.artista}
+                        {evento.titulo}
                       </h3>
                       <p className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-bark/70">
                         <span className="inline-flex items-center gap-1.5">
@@ -58,21 +70,18 @@ export default function ProximosEventos() {
                           />
                           <span className="capitalize">{data.diaSemana}</span>
                         </span>
-                        <span className="inline-flex items-center gap-1.5">
-                          <Clock className="h-4 w-4 text-lake" aria-hidden />
-                          {evento.horario}
-                        </span>
+                        {evento.horario && (
+                          <span className="inline-flex items-center gap-1.5">
+                            <Clock className="h-4 w-4 text-lake" aria-hidden />
+                            {evento.horario}
+                          </span>
+                        )}
                       </p>
-                      {evento.destaque && (
-                        <p className="mt-1 text-sm font-semibold text-lake">
-                          {evento.destaque}
-                        </p>
-                      )}
                     </div>
                   </div>
 
                   <Button
-                    href={whatsappEventoLink(evento.artista, data.completa)}
+                    href={whatsappEventoLink(evento.titulo, data.completa)}
                     variant="secondary"
                     className="mt-5 self-start"
                   >
